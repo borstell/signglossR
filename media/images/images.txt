@@ -1,0 +1,1 @@
+Downloaded image files end up in this folder.

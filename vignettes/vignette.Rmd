@@ -1,0 +1,19 @@
+---
+title: "signglossR"
+author: "Carl Börstell"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{signglossR}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+![Sticker](sticker_signglossR.png)
+
+# signglossR
+Facilitates Visual Representation of Sign Language Data and Glosses
+
+test test
+
+# The idea
+glossgesang

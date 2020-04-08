@@ -12,8 +12,3 @@ vignette: >
 
 # signglossR
 Facilitates Visual Representation of Sign Language Data and Glosses
-
-test test
-
-# The idea
-glossgesang

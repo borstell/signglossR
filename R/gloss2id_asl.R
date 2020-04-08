@@ -3,7 +3,6 @@
 #' This function inputs an ASL ID gloss as a string and outputs the unique
 #' ID number linked to the same sign (its Signbank index).
 #'
-#' @importFrom magrittr %>%
 #' @param gloss ID gloss for the ASL sign
 #' @return The unique ID number linked to the sign used for indexing online
 #' @export

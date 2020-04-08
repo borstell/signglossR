@@ -15,7 +15,7 @@ LazyData: true
 Imports:
     xml2,
     rvest,
-    dplyr,
+    magrittr,
     stringr,
     magick,
     utils

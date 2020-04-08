@@ -15,5 +15,5 @@ get_video_asl <- function(id) {
     rvest::html_attr("src")
   vid_name <- paste0("ASL_", gsub(".*/", "", asl_vid))
   utils::download.file(paste0("https://aslsignbank.haskins.yale.edu", asl_vid), destfile = vid_name)
-  print(paste0("Downloaded file ", vid_name))
+  print(paste0("Downloaded file ", "./media/videos/", vid_name))
 }

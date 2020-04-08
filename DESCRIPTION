@@ -1,5 +1,5 @@
 Package: signglossR
-Title: Facilitates Visual Representation of Sign Language Data and Glosses
+Title: Facilitates Visual Representation of Sign Language Data
 Version: 0.0.0.9000
 Authors@R: person(given = "Carl",
            family = "Börstell",
@@ -11,8 +11,8 @@ Description: This package is intended to facilitate a visual representation of
     and translations. This includes quick and easy downloads of videos/images from 
     various online sign language resources, but also information about glosses, 
     entries, and identifiers used in these resources. 
-Depends: R (>= 3.1.0)
-License: CC BY-NC-SA
+Depends: R (>= 3.4.0)
+License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 LazyData: true
 Imports:

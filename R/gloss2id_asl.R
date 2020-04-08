@@ -1,0 +1,15 @@
+#' Find ID number from ID gloss (ASL Signbank)
+#'
+#' This function inputs an ASL ID gloss as a string and outputs the unique
+#' ID number linked to the same sign (its Signbank index).
+#'
+#' @param gloss ID gloss for the ASL sign
+#' @return The unique ID number linked to the sign used for indexing online
+#' @export
+gloss2id_asl <- function(gloss) {
+  asl_gloss <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/signs/search/?search=", gloss, "&keyword=")) %>%
+    rvest::html_nodes("*") %>%
+    rvest::html_attrs()
+  asl_id <- gsub(".*_", "", as.character(asl_gloss[741]))
+  return(asl_id)
+}

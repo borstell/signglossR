@@ -21,6 +21,7 @@ gloss2id_asl <- function(gloss) {
     }
     else {
       print(paste0("Sign <", gloss, "> not found!"))
+      stop()
     }
   }
 }

@@ -7,14 +7,20 @@
 #' @return The unique ID number linked to the sign used for indexing online
 #' @export
 gloss2id_asl <- function(gloss) {
-  if (signglossR::notNumeric(gloss)) {
+  if (!signglossR::notNumeric(gloss)) {
     print("The <gloss> argument has to be a word string (e.g. 'DEAFix')")
   }
   else {
-  asl_gloss <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/signs/search/?search=%5E", gloss, "%24&keyword=")) %>%
-    rvest::html_nodes("*") %>%
-    rvest::html_attrs()
-    asl_id <- gsub(".*_", "", as.character(asl_gloss[741]))
-    return(asl_id)
+    asl_gloss <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/signs/search/?search=%5E", gloss, "%24&keyword=")) %>%
+      rvest::html_nodes("*") %>%
+      rvest::html_attrs()
+    asl_class <- gsub("_.*", "", as.character(asl_gloss[741]))
+    if (asl_class == "focusgloss") {
+      asl_id <- gsub(".*_", "", as.character(asl_gloss[741]))
+      return(as.character(asl_id))
+    }
+    else {
+      print(paste0("Sign <", gloss, "> not found!"))
+    }
   }
 }

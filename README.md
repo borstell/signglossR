@@ -9,11 +9,11 @@ devtools::install_github("borstell/signglossR")
 ```
 
 # Introduction
-The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing-glossing)).
+The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)).
 
-The section [Images](#images-images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or censor blurring.
+The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or censor blurring.
 
-The section [Videos](#videos-videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. ~~[TBA: This will also include tools for modifying videos, such as repeating, slowing down, and cropping, and preferably also interacting directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. ~~[TBA: This will also include tools for modifying videos, such as repeating, slowing down, and cropping, and preferably also interacting directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
 
 ## Glossing
 Glossing has been a standard way of representing sign language data in linguistics research. In practice, this has meant using written word labels in place of signs, such as in this example from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
@@ -24,14 +24,14 @@ Glossing has been a standard way of representing sign language data in linguisti
     'They don't eat meat'
     (Svenskt teckenspråkslexikon 2020, example 01913-2)
 
-This is problematic since [sign languages](#languages-languages) are visual languages, and any written representation of the signs comes with an incredible loss of information: *Which signs are used if there are variants for the same concept?*, *How are signs moving in space?*, *What non-manual signals are present alongside the manual signs?*, etc.
+This is problematic since [sign languages](#languages) are visual languages, and any written representation of the signs comes with an incredible loss of information: *Which signs are used if there are variants for the same concept?*, *How are signs moving in space?*, *What non-manual signals are present alongside the manual signs?*, etc.
 
 Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang](https://twitter.com/hashtag/GlossGesang), named after Julie Hochgesang (a proponent of visual glossing and opponent of the [Tyranny of glossing](https://twitter.com/search?q=tyrannyofglossing)). \#GlossGesang has been tentatively defined as:
 
 * *"Always present sign language data in a visual format (videos/images) without relying solely on glossing."* [(Börstell 2019)](https://twitter.com/c_borstell/status/1177498599992610823)
 
 ## Languages
-At the time of this very first release, the only to languages available are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). If you use `signglossR`, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license-license)).
+At the time of this very first release, the only to languages available are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). If you use `signglossR`, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
 
 ## Images
 ### `get_image()`
@@ -92,7 +92,7 @@ censor_image(region = "100x120+270+60", method="black")
 
 The `region` argument defines *where* the censored rectangle should be, but also of what *size* it should be. The region to be modified defaults to '100x150+100+100', which is defined in [ImageMagick `geometry` syntax](https://www.imagemagick.org/script/command-line-options.php?#geometry) (width x height +upper_x +upper_y).
 
-Through the [`pipe`](#pipe-pipe) function, we can download and process videos in a single run. This is actually how the blurred example above was generated:
+Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the blurred example above was generated:
 ```
 get_image(1, acronym="sts", overlay=TRUE) %>% 
   censor_image(region = "100x120+270+60")

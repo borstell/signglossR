@@ -7,7 +7,7 @@
 #' @return The unique ID number linked to the sign used for indexing online
 #' @export
 gloss2id_asl <- function(gloss) {
-  if (!signglossR::notNumeric(gloss)) {
+  if (!signglossR::isNotNumeric(gloss)) {
     print("The <gloss> argument has to be a word string (e.g. 'DEAFix')")
   }
   else {

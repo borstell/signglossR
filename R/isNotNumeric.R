@@ -5,6 +5,6 @@
 #' @param x Any input value
 #' @return TRUE/FALSE
 #' @export
-notNumeric <- function(x) {
+isNotNumeric <- function(x) {
   suppressWarnings(is.na(as.numeric(x)))
 }

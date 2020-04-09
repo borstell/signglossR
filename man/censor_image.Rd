@@ -4,14 +4,24 @@
 \alias{censor_image}
 \title{Censor image using blurring or solid black}
 \usage{
-censor_image(file, region = "100x150+100+100", method = "blur")
+censor_image(
+  file,
+  automatic = TRUE,
+  style = "blur",
+  blur = 8,
+  region = "100x150+100+100"
+)
 }
 \arguments{
 \item{file}{The path to the image to be modified}
 
-\item{region}{The region to be modified (defaults to '100x150+100+100', (width x height +upper_x +upper_y))}
+\item{automatic}{Whether to use automatic face detection or not (`automatic=TRUE` is default)}
 
-\item{method}{The method of censoring: "blur" or "black" ("blur" is default)}
+\item{style}{The style of censoring: "blur" or "black" ("blur" is default)}
+
+\item{blur}{The amount of blur if `style="blur` (0 to 10; default is 8)}
+
+\item{region}{The region to be modified (defaults to '100x150+100+100', (width x height +upper_x +upper_y)). Only for `automatic=FALSE`}
 }
 \value{
 The name of the image file that was modified

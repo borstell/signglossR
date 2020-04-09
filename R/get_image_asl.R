@@ -13,7 +13,7 @@
 #' @return The path of the image file that was downloaded
 #' @export
 get_image_asl <- function(id, glosstext=FALSE, gravity="north", location="+10+20", fontsize=70) {
-  if (signglossR::notNumeric(id)) {
+  if (signglossR::isNotNumeric(id)) {
     id <- signglossR::gloss2id_asl(id)
   }
   asl_vid <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu", "/dictionary/gloss/", id, ".html")) %>%

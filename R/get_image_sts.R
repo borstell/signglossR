@@ -12,11 +12,11 @@
 #' @return The path of the image file that was downloaded
 #' @export
 get_image_sts <- function(id, overlay=FALSE, trim=1) {
-  if (signglossR::notNumeric(as.character(id))) {
+  if (signglossR::isNotNumeric(as.character(id))) {
     print("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
   }
-  id <- signglossR::sts_padding(id)
+  id <- stringr::str_pad(id, 5, pad = "0")
   sts_imgs <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/ord/", id)) %>%
     rvest::html_nodes("[class='img-50']") %>%
     rvest::html_attr("src")

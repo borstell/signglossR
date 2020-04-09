@@ -7,7 +7,7 @@
 #' @return The name of the video file that was downloaded
 #' @export
 get_video_asl <- function(id) {
-  if (signglossR::notNumeric(id)) {
+  if (signglossR::isNotNumeric(id)) {
     id <- signglossR::gloss2id_asl(id)
   }
   asl_vid <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu", "/dictionary/gloss/", id, ".html")) %>%

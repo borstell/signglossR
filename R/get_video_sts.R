@@ -7,11 +7,11 @@
 #' @return The name of the video file that was downloaded
 #' @export
 get_video_sts <- function(id) {
-  if (signglossR::notNumeric(as.character(id))) {
+  if (signglossR::isNotNumeric(as.character(id))) {
     print("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
   }
-  id <- signglossR::sts_padding(id)
+  id <- stringr::str_pad(id, 5, pad = "0")
   sts_vid <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/ord/", id)) %>%
     rvest::html_nodes("[type='video/mp4']") %>%
     rvest::html_attr("src")

@@ -10,7 +10,7 @@
 #' @export
 censor_image <- function(file, region='100x150+100+100', method='blur') {
   extension <- tools::file_ext(file)
-  new_filename <- paste0("./media/images/", paste0(gsub(paste0(".", extension), "", gsub(".*/", "", file)), "_censored", ".", extension))
+  new_filename <- paste0("./", paste0(gsub(paste0(".", extension), "", gsub(".*/", "", file)), "_censored", ".", extension))
   if (method == "blur") {
     system(paste0("convert ", file, " -region ", region, " -blur 0x8 ", new_filename))
   }

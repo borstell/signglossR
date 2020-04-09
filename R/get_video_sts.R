@@ -17,7 +17,7 @@ get_video_sts <- function(id) {
     rvest::html_attr("src")
   sts_vid <- paste0("https://teckensprakslexikon.su.se", sts_vid[1])
   vid_name <- paste0("STS_", gsub(".*/", "", sts_vid))
-  path <- paste0("./media/videos/", vid_name)
+  path <- paste0("./", vid_name)
   utils::download.file(sts_vid, destfile = path)
   return(path)
 }

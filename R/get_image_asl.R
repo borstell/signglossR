@@ -20,7 +20,7 @@ get_image_asl <- function(id, glosstext=FALSE, gravity="north", location="+10+20
     rvest::html_nodes("[id='videoplayer']") %>%
     rvest::html_attr("src")
   asl_img <- gsub("mp4", "jpg", gsub("/glossvideo/", "/glossimage/", asl_vid))
-  img_name <- paste0("./media/images/ASL_", gsub(".*/", "", asl_img))
+  img_name <- paste0("./ASL_", gsub(".*/", "", asl_img))
   utils::download.file(paste0("https://aslsignbank.haskins.yale.edu", asl_img), destfile = img_name)
   if (glosstext == TRUE) {
     if (tolower(gravity) %in% c("north", "south")) {

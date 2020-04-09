@@ -43,7 +43,7 @@ get_image_sts <- function(id, overlay=FALSE, trim=1) {
       magick::image_write(magick::image_crop(magick::image_read(i), geomstring), i)
     }
   }
-  new_name <- paste0("./media/images/STS_",gsub("-photo-.*", ".jpg", gsub(".*/", "", img_names[1])))
+  new_name <- paste0("./STS_",gsub("-photo-.*", ".jpg", gsub(".*/", "", img_names[1])))
   if (overlay == TRUE) {
     unlist(sapply(2:length(img_names), function(i) system(paste("convert",img_names[i], img_names[i-1],"-alpha set -compose dissolve -define compose:args='25' -gravity Center -composite",new_name,sep=" "))))
   }

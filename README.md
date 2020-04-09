@@ -157,14 +157,12 @@ This function takes an ASL Signbank ID gloss as its input and returns the sign e
 Example:
 ```
 > gloss2id_asl("DEAFix")
-
-"103"
+[1] "103"
 ```
 Case is irrelevant:
 ```
 > gloss2id_asl("deafix")
-
-"103"
+[1] "103"
 ```
 
 ### `id2gloss_asl()`

@@ -21,7 +21,8 @@ Imports:
     magrittr,
     stringr,
     magick,
-    utils
+    utils,
+    tools
 Suggests: 
     knitr,
     rmarkdown

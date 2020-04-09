@@ -8,7 +8,7 @@
 #' @export
 get_video_sts <- function(id) {
   if (signglossR::notNumeric(as.character(id))) {
-    return("The <id> argument has to be numeric (e.g. '3' or '00004')")
+    print("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
   }
   id <- signglossR::sts_padding(id)
@@ -17,6 +17,7 @@ get_video_sts <- function(id) {
     rvest::html_attr("src")
   sts_vid <- paste0("https://teckensprakslexikon.su.se", sts_vid[1])
   vid_name <- paste0("STS_", gsub(".*/", "", sts_vid))
-  utils::download.file(sts_vid, destfile = paste0("./media/videos/", vid_name))
-  print(paste0("Downloaded file: ", vid_name))
+  path <- paste0("./media/videos/", vid_name)
+  utils::download.file(sts_vid, destfile = path)
+  return(path)
 }

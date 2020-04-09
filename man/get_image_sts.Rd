@@ -14,7 +14,7 @@ get_image_sts(id, overlay = FALSE, trim = 1)
 \item{trim}{Optional argument if horizontal trim wanted (values 0 to 1; default=1)}
 }
 \value{
-The name of the image file that was downloaded
+The path of the image file that was downloaded
 }
 \description{
 This function inputs an STS ID number and downloads the image

@@ -9,11 +9,11 @@
 #' @param id ID number for the STS sign
 #' @param overlay Optional argument if overlay image wanted (defaults to FALSE)
 #' @param trim Optional argument if horizontal trim wanted (values 0 to 1; default=1)
-#' @return The name of the image file that was downloaded
+#' @return The path of the image file that was downloaded
 #' @export
 get_image_sts <- function(id, overlay=FALSE, trim=1) {
   if (signglossR::notNumeric(as.character(id))) {
-    return("The <id> argument has to be numeric (e.g. '3' or '00004')")
+    print("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
   }
   id <- signglossR::sts_padding(id)
@@ -40,13 +40,11 @@ get_image_sts <- function(id, overlay=FALSE, trim=1) {
     geomstring <- paste0(new_width,"x",height,"+",mid[1],"+",0)
     magick::image_crop(im, geomstring)
     for (i in img_names) {
-      #img_names <- c(img_names, magick::image_crop(magick::image_read(i), geomstring))
       magick::image_write(magick::image_crop(magick::image_read(i), geomstring), i)
     }
   }
-  new_name <- paste0("./media/images/",gsub("-photo-.*", ".jpg", gsub(".*/", "", img_names[1])))
+  new_name <- paste0("./media/images/STS_",gsub("-photo-.*", ".jpg", gsub(".*/", "", img_names[1])))
   if (overlay == TRUE) {
-    #system("convert taxi-00001-photo-2.jpg taxi-00001-photo-1.jpg -alpha set -compose dissolve -define compose:args='25' -gravity Center -composite test.jpg")
     unlist(sapply(2:length(img_names), function(i) system(paste("convert",img_names[i], img_names[i-1],"-alpha set -compose dissolve -define compose:args='25' -gravity Center -composite",new_name,sep=" "))))
   }
   else {
@@ -55,5 +53,5 @@ get_image_sts <- function(id, overlay=FALSE, trim=1) {
   for (i in img_names) {
     system(paste0("rm ", i))
   }
-  print(paste0("Downloaded and processed file: ", new_name))
+  return(new_name)
 }

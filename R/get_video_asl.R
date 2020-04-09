@@ -1,7 +1,7 @@
 #' Get ASL sign video (ASL Signbank)
 #'
-#' This function inputs an ASL ID gloss or number and downloads the video
-#' of the corresponding sign entry in ASL Signbank.
+#' This function inputs an ASL ID gloss or number and downloads the
+#' video of the corresponding sign entry in ASL Signbank.
 #'
 #' @param id ID number for the ASL sign
 #' @return The name of the video file that was downloaded
@@ -14,6 +14,7 @@ get_video_asl <- function(id) {
     rvest::html_nodes("[id='videoplayer']") %>%
     rvest::html_attr("src")
   vid_name <- paste0("ASL_", gsub(".*/", "", asl_vid))
-  utils::download.file(paste0("https://aslsignbank.haskins.yale.edu", asl_vid), destfile = paste0("./media/videos/", vid_name))
-  print(paste0("Downloaded file: ", vid_name))
+  path <- paste0("./media/videos/", vid_name)
+  utils::download.file(paste0("https://aslsignbank.haskins.yale.edu", asl_vid), destfile = path)
+  return(path)
 }

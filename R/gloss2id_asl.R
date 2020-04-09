@@ -8,7 +8,7 @@
 #' @export
 gloss2id_asl <- function(gloss) {
   if (!signglossR::notNumeric(gloss)) {
-    return("The <gloss> argument has to be a word string (e.g. 'DEAFix')")
+    print("The <gloss> argument has to be a word string (e.g. 'DEAFix')")
   }
   else {
     asl_gloss <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/signs/search/?search=%5E", gloss, "%24&keyword=")) %>%
@@ -20,7 +20,7 @@ gloss2id_asl <- function(gloss) {
       return(as.character(asl_id))
     }
     else {
-      return(paste0("Sign <", gloss, "> not found!"))
+      print(paste0("Sign <", gloss, "> not found!"))
       stop()
     }
   }

@@ -13,6 +13,6 @@ get_video_asl(id)
 The name of the video file that was downloaded
 }
 \description{
-This function inputs an ASL ID gloss or number and downloads the video
-of the corresponding sign entry in ASL Signbank.
+This function inputs an ASL ID gloss or number and downloads the
+video of the corresponding sign entry in ASL Signbank.
 }

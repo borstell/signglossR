@@ -9,14 +9,14 @@ devtools::install_github("borstell/signglossR")
 ```
 
 # Introduction
-The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt \#GlossGesang and avoid #\TyrannyOfGlossing (see [Glossing](#glossing)).
+The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing-glossing)).
 
-The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or censor blurring.
+The section [Images](#images-images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or censor blurring.
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. ~~[TBA: This will also include tools for modifying videos, such as repeating, slowing down, and cropping, and preferably also interacting directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
+The section [Videos](#videos-videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. ~~[TBA: This will also include tools for modifying videos, such as repeating, slowing down, and cropping, and preferably also interacting directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
 
 ## Glossing {#glossing}
-Glossing has been a standard way of representing sign language data in linguistics research. In practice, this has meant using written word labels in place of signs, such as in this example from the [STS Dictionary](https://teckensprakslexikon.su.se/)[^1]:
+Glossing has been a standard way of representing sign language data in linguistics research. In practice, this has meant using written word labels in place of signs, such as in this example from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
 
 ![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/videos/meat.gif)
 
@@ -30,12 +30,10 @@ Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang]
 
 * *"Always present sign language data in a visual format (videos/images) without relying solely on glossing."* [(Börstell 2019)](https://twitter.com/c_borstell/status/1177498599992610823)
 
-[^1]: [Svenskt teckenspråkslexikon (2020), example 01913-2](https://teckensprakslexikon.su.se/ord/01913#exempel2)
-
-## Languages {#languages}
+## Languages
 At the time of this very first release, the only to languages available are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). If you use `signglossR`, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
 
-## Images {#images}
+## Images
 ### `get_image()`
 This function inputs an  ID number and downloads the image of the corresponding sign entry in the selected language.
 
@@ -124,7 +122,7 @@ The `get_video()` function passes its arguments onto subfunctions for individual
 
 ### ~~`elan2video()`~~
 
-## Miscellaneous {#misc}
+## Miscellaneous {#miscellaneous}
 ### `cite_source`
 Alongside the standard R `citation()` function for citing packages (or R itself), the function `cite_source()` outputs the preferred citation format of the language resource of a language.
 

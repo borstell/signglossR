@@ -26,10 +26,10 @@ get_image_sts <- function(id, overlay=FALSE, trim=1) {
     large <- gsub("-medium", "", i)
     url <- paste0("https://teckensprakslexikon.su.se",large)
     urls <- c(urls, url)
-    img_names <- c(img_names, paste0("./media/images/", gsub(".*/", "", large)))
+    img_names <- c(img_names, paste0("./", gsub(".*/", "", large)))
   }
   for (url in urls) {
-    utils::download.file(url, destfile = paste0("./media/images/", gsub(".*/", "", url)))
+    utils::download.file(url, destfile = paste0("./", gsub(".*/", "", url)))
   }
   if (trim < 1) {
     im <- magick::image_read(img_names[1])

@@ -9,11 +9,12 @@ devtools::install_github("borstell/signglossR")
 ```
 
 # Introduction
-The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)).
+The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)). The intention of this package is to collect many different existing resources and adapt them to sign language researchers. The hard work in actual coding has been done by others -- `signglossR` relies heavily on other R packages such as [`magick`](https://ropensci.org/tutorials/magick_tutorial/), [`opencv`](https://docs.ropensci.org/opencv), and [`av`](https://docs.ropensci.org/av/), and also makes use of background command line prompts through R, especially [`ImageMagick`](https://imagemagick.org) and [`ffmpeg`](https://ffmpeg.org).
 
-The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or censor blurring.
+The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring.
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. ~~[TBA: This will also include tools for modifying videos, such as repeating, slowing down, and cropping, and preferably also interacting directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In version 1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. ~~[TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
+
 
 ## Glossing
 Glossing has been a standard way of representing sign language data in linguistics research. In practice, this has meant using written word labels in place of signs, such as in this example from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
@@ -30,8 +31,10 @@ Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang]
 
 * *"Always present sign language data in a visual format (videos/images) without relying solely on glossing."* [(Börstell 2019)](https://twitter.com/c_borstell/status/1177498599992610823)
 
+
 ## Languages
 At the time of this very first release, the only to languages available are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). If you use `signglossR`, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
+
 
 ## Images
 ### `get_image()`
@@ -79,26 +82,45 @@ get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 The `get_sign()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_sign_asl()` and `get_sign_sts()`.
 
 ### `censor_image()`
-Maybe you need to censor part of your image for some reason. Perhaps to hide the identity of the signer. This can be done using the function `censor_image()` which allows you to either blur or completely censor some region of the image. Default `method` is set to `blur`:
+Maybe you need to censor part of your image for some reason. Perhaps to hide the identity of the signer. This can be done using the function `censor_image()` which allows you to either blur or completely censor some region of the image. Default `style` is set to `blur`. If `automatic` is set to `FALSE` (default is `TRUE`), you will need to define a geometry region; if set to `TRUE`, the imported function `opencv::ocv_facemask()` will automatically detect faces and use as a mask for blurring/censoring.
+
 ```
-censor_image(region = "100x120+270+60", method="blur")
+censor_image(file="ASL_DEAF-103.jpg", automatic=TRUE, style="blur")
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_blurred.jpg)
+
+Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the censored example below was generated:
+
+```
+get_image(104, acronym="asl") %>% 
+  censor_image(style="black")
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104_censored.jpg)
+
+The automatic function is particularly useful when there are multiple regions to be censored, as multiple regions can be identified and masked at once. However, the method may fail if the face is covered:
+
+```
+get_image(10, acronym="sts", overlay=FALSE) %>% 
+  censor_image(style="black")
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_bjorn-00010_censored.jpg)
+
+Below are some examples of manually defined regions to censor.
+
+```
+censor_image(file=path, automatic=FALSE, region = "100x120+270+60", style="blur")
 ```
 ![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_blurred.jpg)
 
 ```
-censor_image(region = "100x120+270+60", method="black")
+censor_image(file=path, region = "100x120+270+60", method="black")
 ```
 ![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_censored.jpg)
 
 The `region` argument defines *where* the censored rectangle should be, but also of what *size* it should be. The region to be modified defaults to '100x150+100+100', which is defined in [ImageMagick `geometry` syntax](https://www.imagemagick.org/script/command-line-options.php?#geometry) (width x height +upper_x +upper_y).
 
-Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the blurred example above was generated:
-```
-get_image(1, acronym="sts", overlay=TRUE) %>% 
-  censor_image(region = "100x120+270+60")
-```
-
 ### ~~`elan2image()`~~
+
 
 ## Videos
 
@@ -111,14 +133,44 @@ get_image(id=10, acronym="sts")
 ```
 ![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
 
-(NB: This example is shown as a `.gif even though the actual download will use the video format of the original source (mostly `.mp4`). GIF conversion functionality is not yet available, but will hopefully come in a later release soon.)
+NB: This example is shown as a `.gif` even though the actual download will use the video format of the original source (mostly `.mp4`). GIF conversion functionality is available from version 1.1.0 with the function `make_gif()` (see below).
+
+### `make_gif()`
+We all love GIFs (hard /g/)! With this function, which uses command line prompts, you can input any video file and it outputs a `.gif` file. You can specify the `scale` of the video dimensions, and the framerate `fps` (it is often smart to downsize a little, as GIFs are often heavy).
+
+```
+make_gif(file="STS_dov-00042-tecken.mp4", scale=.5, fps=12.5)
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken.gif)
+
+If you pipe a video download from `get_video()` to `make_gif()`, both video file and gif file will be saved, for example:
+
+```
+get_video(42) %>% 
+  make_gif(scale=.5, fps=12.5)
+  
+$ STS_dov-00042-tecken.mp4
+$ STS_dov-00042-tecken.gif
+```
+
+### `make_video_ex()`
+Often when you want to show an example during a presentation etc., you may want to repeat or show a slowed down rendition of the sign. These things can be done with `make_video_ex()` which takes a `speed` (video playback speed) and `rep` (repeat; default is `FALSE`) argument. If `speed` is set to `.7` (=70%), we get a slightly slowed down video output:
+
+```
+make_video_ex(file="STS_dov-00042-tecken.mp4", speed=.7)
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_70.gif)
+
+We could also set the `rep` argument to `TRUE` (or `T` for short), which means that the video example rendered will first play once in normal speed, then repeated once with slower speed, here set to 30% (`speed = .3`):
+
+```
+get_video(42) %>% 
+  make_video_example(rep=T, speed=.3)
+```
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_30_REP.gif)
 
 #### Subfunctions
 The `get_video()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_video_asl()` and `get_video_sts()`.
-
-### ~~`get_gif()`~~
-
-### ~~`make_slowmotion()`~~
 
 ### ~~`elan2video()`~~
 
@@ -194,17 +246,16 @@ Small functions that only serve to assist other functions.
 #### `isNumeric()`
 For checking inputs.
 
-#### `notNumeric()`
+#### `isNotNumeric()`
 For checking inputs.
 
-#### `sts_padding()`
-Adds leading zeros to sign ID inputs for STS.
+#### ~~`sts_padding()`~~
+~~Adds leading zeros to sign ID inputs for STS.~~ (Removed in version 1.1.0)
 
-Example:
-```
-> sts_padding(id=1)
-[1] "00001"
-```
+
+## Logo
+The logo was created by me using a combination of own code for reading images and plotting them in [`ggplot2`](https://ggplot2.tidyverse.org). The hex sticker is a nod to the [`tidyverse`](https://www.tidyverse.org) logos and was rendered using the [`hexSticker`](https://github.com/GuangchuangYu/hexSticker) package. The color is turquoise which is a color that I like and also relates to the deaf world. The motif is chosen because it is an **iconic** image of hands, and also because the two hands almost form G handshapes (in many one-handed manual alphabets). And the `gg` structure reminds me of both R packages in `tidyverse`, but also the concept of \#GlossGesang!
+<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="100">
 
 ## License and use
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 
@@ -219,7 +270,7 @@ citation("signglossR")
 To cite reports in publications, please use:
 
   Börstell, Carl. 2020. signglossR: Facilitating visual representation of sign
-  language data. R package version 1.0.0. Radboud University, Nijmegen.
+  language data. R package version 1.1.0. Radboud University, Nijmegen.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -229,7 +280,7 @@ A BibTeX entry for LaTeX users is
     author = {Carl Börstell},
     organization = {Radboud University, Nijmegen},
     address = {Nijmegen},
-    note = {R package version 1.0.0},
+    note = {R package version 1.1.0},
     year = {2020},
     url = {https://github.com/borstell/signglossR},
   }

@@ -33,7 +33,7 @@ combine_images <- function(input, destfile="", stack=FALSE, overlay=FALSE, trim=
     new_files <- c()
     for (i in files) {
       extension <- paste0(".",tools::file_ext(i))
-      new_name <- gsub(extension, paste0("_SEQ", extension), i)
+      new_name <- gsub(extension, paste0("_signglossR-SEQ", extension), i)
       magick::image_write(magick::image_crop(magick::image_read(i), geomstring), new_name)
       new_files <- c(new_files, new_name)
     files <- new_files
@@ -49,8 +49,10 @@ combine_images <- function(input, destfile="", stack=FALSE, overlay=FALSE, trim=
     }
     magick::image_write(magick::image_append(magick::image_scale(magick::image_read(files), dimstring), stack = stack), destfile)
   }
-  for (i in new_files) {
-    system(paste0("rm ", i))
+  for (i in files) {
+    if (length(i) != length(gsub("_signglossR-SEQ.", "", i))) {
+      system(paste0("rm ", i))
+    }
   }
   return(destfile)
 }

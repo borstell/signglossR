@@ -39,7 +39,7 @@ Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang]
 ## Languages
 At the time of this first release, the only to languages available for data *downloads* are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). However, most functions in `signglossR` can be used with any image/video file, such as those you may already have locally on your computer, from your own dataset. Here, `signglossR` can be used to quickly prepare your data for teaching or presentation slides.
 
-NB: If you use `signglossR` to download data, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
+NB: If you use `signglossR` to download data, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License](#license)).
 
 
 ## Images
@@ -302,7 +302,7 @@ The logo was created by me using a combination of own code for reading images an
 
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="200">
 
-## License {#license}
+## License
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 
 
 * Please acknowledge any use of the `signglossR` package. The preferred citation is given by the ```citation("signglossR")``` function:

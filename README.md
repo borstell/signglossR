@@ -1,6 +1,8 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
+**v1.2.0**
+
 An R package that facilitates *visual* representation of sign language data
 
 Download using:
@@ -11,15 +13,17 @@ devtools::install_github("borstell/signglossR")
 # Introduction
 The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)). The intention of this package is to collect many different existing resources and adapt them to sign language researchers. The hard work in actual coding has been done by others -- `signglossR` relies heavily on other R packages such as [`magick`](https://ropensci.org/tutorials/magick_tutorial/), [`opencv`](https://docs.ropensci.org/opencv), and [`av`](https://docs.ropensci.org/av/), and also makes use of background command line prompts through R, especially [`ImageMagick`](https://imagemagick.org) and [`ffmpeg`](https://ffmpeg.org).
 
-The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring.
+The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. There are also functions 
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In version 1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. ~~[TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.]~~
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. (TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.)
+
+The section [Miscellaneous](#miscellaneous) describes other functions not directly related to image or video processing.
 
 
 ## Glossing
 Glossing has been a standard way of representing sign language data in linguistics research. In practice, this has meant using written word labels in place of signs, such as in this example from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
 
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/videos/meat.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/videos/meat.gif)
 
     IX EAT MEAT IX
     'They don't eat meat'
@@ -33,7 +37,9 @@ Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang]
 
 
 ## Languages
-At the time of this very first release, the only to languages available are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). If you use `signglossR`, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
+At the time of this first release, the only to languages available for data *downloads* are ASL (American Sign Language) and STS (Swedish Sign Language; *svenskt teckenspråk*). These are chosen out of convenience but also as they both have online lexical resources that are not heavily copyrighted. I have a few more languages lined up, hopefully to be added soon (looking at you FinSL, FinSSL, and NZSL...). However, most functions in `signglossR` can be used with any image/video file, such as those you may already have locally on your computer, from your own dataset. Here, `signglossR` can be used to quickly prepare your data for teaching or presentation slides.
+
+NB: If you use `signglossR` to download data, make sure you cite not only this R package itself but also attribute the original sources of language resources behind the data (see [License and use](#license)).
 
 
 ## Images
@@ -44,19 +50,19 @@ Example:
 ```
 get_image(id=1, acronym="sts")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010.jpg)
 
 In this image, the image of BJÖRN ('bear') from STS becomes very wide as there are several frames to represent the sign. We could try to use the `overlay` argument to create an overlay image instead:
 ```
 get_image(id=1, acronym="sts", overlay=TRUE)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_overlay.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_overlay.jpg)
 
 This did not turn out very nice, since the movement segments get lost in the overlay. We could go back and try to use the `trim` argument, which trims each frame to a factor (0 to 1) of its original width:
 ```
 get_image(id=1, acronym="sts", overlay=FALSE, trim=.8)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_trimmed.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_trimmed.jpg)
 
 (NB: `overlay` and `trim` are currently only available for STS. Below are other options available for ASL.)
 
@@ -64,19 +70,19 @@ Maybe we want to add the text gloss onto the image (text glosses are not all bad
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_badtext.jpg)
+![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_badtext.jpg)
 
 Oh no! This didn't turn out very nice! The default anchor point (`gravity`) for the text annotation is `north` (i.e. top middle part of frame), but this part of the image is blocked by the signer here. We can change the `gravity` to something else:
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103.jpg)
+![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103.jpg)
 
 This looks better! In other cases, the default `gravity` position may be perfectly fine:
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104.jpg)
+![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/104.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104.jpg)
 
 #### Subfunctions
 The `get_sign()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_sign_asl()` and `get_sign_sts()`.
@@ -87,7 +93,7 @@ Maybe you need to censor part of your image for some reason. Perhaps to hide the
 ```
 censor_image(file="ASL_DEAF-103.jpg", automatic=TRUE, style="blur")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_blurred.jpg)
+![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_blurred.jpg)
 
 Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the censored example below was generated:
 
@@ -95,7 +101,7 @@ Through the [`pipe`](#pipe) function, we can download and process videos in a si
 get_image(104, acronym="asl") %>% 
   censor_image(style="black")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104_censored.jpg)
+![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/104.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104_censored.jpg)
 
 The automatic function is particularly useful when there are multiple regions to be censored, as multiple regions can be identified and masked at once. However, the method may fail if the face is covered:
 
@@ -103,7 +109,7 @@ The automatic function is particularly useful when there are multiple regions to
 get_image(10, acronym="sts", overlay=FALSE) %>% 
   censor_image(style="black")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_bjorn-00010_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_bjorn-00010_censored.jpg)
 
 Below are some examples of manually defined regions to censor.
 
@@ -115,9 +121,37 @@ censor_image(file=path, automatic=FALSE, region = "100x120+270+60", style="blur"
 ```
 censor_image(file=path, region = "100x120+270+60", method="black")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_censored.jpg)
 
 The `region` argument defines *where* the censored rectangle should be, but also of what *size* it should be. The region to be modified defaults to '100x150+100+100', which is defined in [ImageMagick `geometry` syntax](https://www.imagemagick.org/script/command-line-options.php?#geometry) (width x height +upper_x +upper_y).
+
+### `make_image_ex()`
+This function is useful for preparing images of signs for e.g. teaching or presentation slides or publications. The function has merged many of the options available in the [`magick`](https://ropensci.org/tutorials/magick_tutorial/) package, and allows you to `crop` and `scale` (i.e. resize) images, but also add text annotations or a border frame:
+
+```
+get_image(id, acronym="sts", overlay=TRUE) %>% 
+  make_image_ex(text=id2gloss(id), fontsize=45, gravity="northwest", border=TRUE)
+```
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_varld-01210_EXAMPLE.jpg)
+
+### `combine_images()`
+With this function, you can combine several images into one single output image. You can choose between either an `overlay` output image, or one with distinct frames either horizontally aligned (`stack=FALSE`) or stacked vertically (`stack=TRUE`).
+
+If we create a pipeline to generate individual frames, we can get this type of workflow:
+```
+signs <- c(12747, 1210)
+sequence <- c()
+for (n in signs) {
+   sequence <- c(sequence, make_image_ex(get_image(n, "sts", overlay = T), text=id2gloss(n),
+    fontsize = 45, border = T, gravity = "northwest"))
+
+combine_images(sequence, destfile = "./helloworld.jpg", stack=FALSE)
+```
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/helloworld.jpg)
+```
+combine_images(sequence, destfile = "./helloworld.jpg", stack=TRUE)
+```
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/helloworld_stacked.jpg)
 
 ### ~~`elan2image()`~~
 
@@ -203,33 +237,48 @@ A BibTeX entry for LaTeX users is
    
 ```
 
-### `gloss2id_asl()`
-This function takes an ASL Signbank ID gloss as its input and returns the sign entry's corresponding ID **number**.
+### `gloss2id()`
+This function takes an ID gloss as its input and returns the sign entry's corresponding ID **number**.
 
 Example:
 ```
-> gloss2id_asl("DEAFix")
+> gloss2id("DEAFix", acronym="asl")
 [1] "103"
 ```
 Case is irrelevant:
 ```
-> gloss2id_asl("deafix")
+> gloss2id("deafix", acronym="asl")
 [1] "103"
 ```
 
-### `id2gloss_asl()`
-This function takes an ASL Signbank ID numbers as its input and returns the sign entry's corresponding ID **gloss**.
+### `id2gloss()`
+This function takes an ID number as its input and returns the sign entry's corresponding ID **gloss**.
 
 Example:
 ```
-> id2gloss_asl(103)
-[1] "DEAFix"
+> id2gloss(1)
+[1] "TAXI(J)"
 ```
 Integer or string is irrelevant:
 ```
-> gloss2id_asl("103")
+> gloss2id("1")
 [1] "DEAFix"
 ```
+
+#### Subfunctions
+`id2gloss()` and `gloss2id()` call on specific subfunctions per language: `id2gloss_asl()`, `id2gloss_asl()`, `id2gloss_sts()`, `gloss2id_sts()`
+
+### `search_corpus()`
+With the function `search_corpus()`, you can input a corpus ID gloss and it takes you directly to the search hits of an online corpus to show you the results. NB: Currently only available for STS:
+
+```
+> search_corpus("TAXI(J)")
+[1] "https://teckensprakskorpus.su.se/#/?q=TAXI(J)"
+```
+
+
+### Other
+Small functions that only serve to assist other functions.
 
 ### `pipe`
 This function enables the use of piping with `%>%` (originally from the [`magrittr`](https://magrittr.tidyverse.org) package, well known from [`tidyverse`](https://www.tidyverse.org)).
@@ -239,9 +288,6 @@ Example:
 get_image(1, acronym="sts", overlay=TRUE) %>% 
   censor_image(region = "100x120+270+60")
 ```
-
-### Other
-Small functions that only serve to assist other functions.
 
 #### `isNumeric()`
 For checking inputs.
@@ -271,7 +317,7 @@ citation("signglossR")
 To cite reports in publications, please use:
 
   Börstell, Carl. 2020. signglossR: Facilitating visual representation of sign
-  language data. R package version 1.1.0. Radboud University, Nijmegen.
+  language data. R package version 1.2.0. Radboud University, Nijmegen.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -281,7 +327,7 @@ A BibTeX entry for LaTeX users is
     author = {Carl Börstell},
     organization = {Radboud University, Nijmegen},
     address = {Nijmegen},
-    note = {R package version 1.1.0},
+    note = {R package version 1.2.0},
     year = {2020},
     url = {https://github.com/borstell/signglossR},
   }

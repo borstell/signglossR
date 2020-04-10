@@ -302,7 +302,7 @@ The logo was created by me using a combination of own code for reading images an
 
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="200">
 
-## License and use
+## License {#license}
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 
 
 * Please acknowledge any use of the `signglossR` package. The preferred citation is given by the ```citation("signglossR")``` function:

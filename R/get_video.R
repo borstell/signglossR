@@ -15,5 +15,9 @@ get_video <- function(id, acronym="sts") {
   if (acronym %in% c("sts", "ssl")) {
     vid_name <- signglossR::get_video_sts(id)
   }
+  else {
+    message(paste0("Language <", acronym, "> not available."))
+    stop()
+  }
   return(vid_name)
 }

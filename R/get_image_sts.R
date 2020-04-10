@@ -13,7 +13,7 @@
 #' @export
 get_image_sts <- function(id, overlay=FALSE, trim=1) {
   if (signglossR::isNotNumeric(as.character(id))) {
-    print("The <id> argument has to be numeric (e.g. '3' or '00004')")
+    message("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
   }
   id <- stringr::str_pad(id, 5, pad = "0")
@@ -38,7 +38,6 @@ get_image_sts <- function(id, overlay=FALSE, trim=1) {
     mid <- c(width*(1-trim)/2, height)
     new_width <- width*trim
     geomstring <- paste0(new_width,"x",height,"+",mid[1],"+",0)
-    magick::image_crop(im, geomstring)
     for (i in img_names) {
       magick::image_write(magick::image_crop(magick::image_read(i), geomstring), i)
     }

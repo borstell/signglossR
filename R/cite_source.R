@@ -62,7 +62,7 @@ A BibTeX entry for LaTeX users is
 To cite signglossR in publications, please use:
 
   Börstell, Carl. 2020. signglossR: Facilitating visual representation of sign
-  language data. R package version 1.0.0. Radboud University, Nijmegen.
+  language data. R package version 1.2.0. Radboud University, Nijmegen.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -72,7 +72,7 @@ A BibTeX entry for LaTeX users is
     author = {Carl Börstell},
     organization = {Radboud University, Nijmegen},
     address = {Nijmegen},
-    note = {R package version 1.0.0},
+    note = {R package version 1.2.0},
     year = {2020},
     url = {https://github.com/borstell/signglossR},
   }

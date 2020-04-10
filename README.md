@@ -48,19 +48,19 @@ This function inputs an  ID number and downloads the image of the corresponding 
 
 Example:
 ```
-get_image(id=1, acronym="sts")
+get_image(id=10, acronym="sts")
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010.jpg)
 
 In this image, the image of BJÖRN ('bear') from STS becomes very wide as there are several frames to represent the sign. We could try to use the `overlay` argument to create an overlay image instead:
 ```
-get_image(id=1, acronym="sts", overlay=TRUE)
+get_image(id=10, acronym="sts", overlay=TRUE)
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_overlay.jpg)
 
 This did not turn out very nice, since the movement segments get lost in the overlay. We could go back and try to use the `trim` argument, which trims each frame to a factor (0 to 1) of its original width:
 ```
-get_image(id=1, acronym="sts", overlay=FALSE, trim=.8)
+get_image(id=10, acronym="sts", overlay=FALSE, trim=.8)
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_trimmed.jpg)
 
@@ -70,19 +70,17 @@ Maybe we want to add the text gloss onto the image (text glosses are not all bad
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE)
 ```
-![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_badtext.jpg)
 
 Oh no! This didn't turn out very nice! The default anchor point (`gravity`) for the text annotation is `north` (i.e. top middle part of frame), but this part of the image is blocked by the signer here. We can change the `gravity` to something else:
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 ```
-![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103.jpg)
 
 This looks better! In other cases, the default `gravity` position may be perfectly fine:
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 ```
-![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/104.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104.jpg)
+
 
 #### Subfunctions
 The `get_sign()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_sign_asl()` and `get_sign_sts()`.
@@ -91,17 +89,17 @@ The `get_sign()` function passes its arguments onto subfunctions for individual 
 Maybe you need to censor part of your image for some reason. Perhaps to hide the identity of the signer. This can be done using the function `censor_image()` which allows you to either blur or completely censor some region of the image. Default `style` is set to `blur`. If `automatic` is set to `FALSE` (default is `TRUE`), you will need to define a geometry region; if set to `TRUE`, the imported function `opencv::ocv_facemask()` will automatically detect faces and use as a mask for blurring/censoring.
 
 ```
-censor_image(file="ASL_DEAF-103.jpg", automatic=TRUE, style="blur")
+censor_image(file="STS_taxi-00001.jpg", automatic=TRUE, style="blur")
 ```
-![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/103.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-103_blurred.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_taxi-00001_overlay_blurred.jpg)
 
 Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the censored example below was generated:
 
 ```
-get_image(104, acronym="asl") %>% 
+get_image(1) %>% 
   censor_image(style="black")
 ```
-![[Hochgesang et al. (2020)](https://aslsignbank.haskins.yale.edu/dictionary/gloss/104.html)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/ASL_DEAF-104_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_taxi-00001_overlay_censored.jpg)
 
 The automatic function is particularly useful when there are multiple regions to be censored, as multiple regions can be identified and masked at once. However, the method may fail if the face is covered:
 
@@ -116,7 +114,7 @@ Below are some examples of manually defined regions to censor.
 ```
 censor_image(file=path, automatic=FALSE, region = "100x120+270+60", style="blur")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_blurred.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_blurred.jpg)
 
 ```
 censor_image(file=path, region = "100x120+270+60", method="black")
@@ -165,7 +163,7 @@ Example:
 ```
 get_image(id=10, acronym="sts")
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
 
 NB: This example is shown as a `.gif` even though the actual download will use the video format of the original source (mostly `.mp4`). GIF conversion functionality is available from version 1.1.0 with the function `make_gif()` (see below).
 
@@ -175,7 +173,7 @@ We all love GIFs (hard /g/)! With this function, which uses command line prompts
 ```
 make_gif(file="STS_dov-00042-tecken.mp4", scale=.5, fps=12.5)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken.gif)
 
 If you pipe a video download from `get_video()` to `make_gif()`, both video file and gif file will be saved, for example:
 
@@ -201,7 +199,7 @@ We could also set the `rep` argument to `TRUE` (or `T` for short), which means t
 get_video(42) %>% 
   make_video_example(rep=T, speed=.3)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_30_REP.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_30_REP.gif)
 
 #### Subfunctions
 The `get_video()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_video_asl()` and `get_video_sts()`.

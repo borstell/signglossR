@@ -255,7 +255,8 @@ For checking inputs.
 
 ## Logo
 The logo was created by me using a combination of own code for reading images and plotting them in [`ggplot2`](https://ggplot2.tidyverse.org). The hex sticker is a nod to the [`tidyverse`](https://www.tidyverse.org) logos and was rendered using the [`hexSticker`](https://github.com/GuangchuangYu/hexSticker) package. The color is turquoise which is a color that I like and also relates to the deaf world. The motif is chosen because it is an **iconic** image of hands, and also because the two hands almost form G handshapes (in many one-handed manual alphabets). And the `gg` structure reminds me of both R packages in `tidyverse`, but also the concept of \#GlossGesang!
-<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="100">
+
+<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="200">
 
 ## License and use
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 

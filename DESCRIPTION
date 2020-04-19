@@ -6,6 +6,8 @@ Authors@R: person(given = "Carl",
            role = c("aut", "cre"),
            email = "c.borstell@let.ru.nl",
            comment = c(ORCID = "0000-0001-7549-4648"))
+URL: https://github.com/borstell/signglossR
+BugReports: https://github.com/borstell/signglossR/issues
 Description: This package is intended to facilitate a visual representation of 
     sign language data by incorporating videos and images alongside written glosses 
     and translations. This includes quick and easy downloads of videos/images from 

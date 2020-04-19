@@ -2,7 +2,7 @@
 
 # signglossR
 **v1.2.0**
-[![R build status](https://github.com/jonkeane/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/jonkeane/signglossR/actions)
+[![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
 

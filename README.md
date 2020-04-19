@@ -15,7 +15,7 @@ The R package `signglossR` includes various R functions (created, adapted, and i
 
 The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. There are also functions 
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. (TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan)] for automated visual glossing.)
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. (TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.)
 
 The section [Miscellaneous](#miscellaneous) describes other functions not directly related to image or video processing.
 

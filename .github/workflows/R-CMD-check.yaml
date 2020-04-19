@@ -38,6 +38,12 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@master
 
+      - name: Install linux opencv
+        if: runner.os == 'Linux'
+        run: |
+          sudo add-apt-repository ppa:opencpu/opencv
+          sudo apt install libopencv-dev
+
       - name: Query dependencies
         run: |
           install.packages('remotes')

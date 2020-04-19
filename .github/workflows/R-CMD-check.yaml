@@ -50,8 +50,11 @@ jobs:
       - name: Install macos opencv
         if: runner.os == 'macOS'
         run: |
-          brew install opencv
-          brew install ffmpeg
+          brew install opencv ffmpeg imagemagick@6
+
+      - name: Install xml2 from github (for devel only \#296)
+        if: matrix.config.os == 'macOS-latest' && needs.R-CMD-check-bioc.outputs.rversion == 'devel'
+        run: Rscript -e "remotes::install_github('r-lib/xml2')"
 
       - name: Query dependencies
         run: |

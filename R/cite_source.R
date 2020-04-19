@@ -37,7 +37,7 @@ A BibTeX entry for LaTeX users is
       "
 To cite the STS dictionary in publications, please use:
 
-  Svenskt teckenspråkslexikon. 2020. Svenskt teckenspråkslexikon. Stockholm:
+  Svenskt teckenspr\u00e5kslexikon. 2020. Svenskt teckenspr\u00e5kslexikon. Stockholm:
   Sign Language Section, Department of Linguistics, Stockholm University.
   https://teckensprakslexikon.ling.su.se/
 
@@ -61,7 +61,7 @@ A BibTeX entry for LaTeX users is
       "
 To cite signglossR in publications, please use:
 
-  Börstell, Carl. 2020. signglossR: Facilitating visual representation of sign
+  B\u00f6rstell, Carl. 2020. signglossR: Facilitating visual representation of sign
   language data. R package version 1.2.0. Radboud University, Nijmegen.
   https://github.com/borstell/signglossR
 
@@ -69,7 +69,7 @@ A BibTeX entry for LaTeX users is
 
 @Manual{signglossR,
     title = {{signglossR}: Facilitating visual representation of sign language data},
-    author = {Carl Börstell},
+    author = {Carl B\u00Dfrstell},
     organization = {Radboud University, Nijmegen},
     address = {Nijmegen},
     note = {R package version 1.2.0},

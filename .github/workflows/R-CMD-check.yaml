@@ -52,15 +52,15 @@ jobs:
         run: |
           brew install opencv ffmpeg imagemagick@6
 
-      - name: Install xml2 from github (for devel only \#296)
-        if: matrix.config.os == 'macOS-latest' && needs.R-CMD-check-bioc.outputs.rversion == 'devel'
-        run: Rscript -e "remotes::install_github('r-lib/xml2')"
-
       - name: Query dependencies
         run: |
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
+
+      - name: Install xml2 from github (for devel only \#296)
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'devel'
+        run: Rscript -e "remotes::install_github('r-lib/xml2')"
 
       - name: Cache R packages
         if: runner.os != 'Windows'

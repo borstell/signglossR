@@ -21,7 +21,6 @@ jobs:
           - {os: windows-latest, r: '3.6'}
           - {os: macOS-latest, r: '3.6'}
           - {os: macOS-latest, r: 'devel'}
-          - {os: ubuntu-16.04, r: '3.4', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-16.04, r: '3.5', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
           - {os: ubuntu-16.04, r: '3.6', rspm: "https://demo.rstudiopm.com/all/__linux__/xenial/latest"}
 
@@ -41,8 +40,15 @@ jobs:
       - name: Install linux opencv
         if: runner.os == 'Linux'
         run: |
-          sudo add-apt-repository ppa:opencpu/opencv
+          sudo add-apt-repository ppa:cran/opencv
           sudo apt install libopencv-dev
+          sudo apt install libavfilter-dev
+
+      - name: Install macos opencv
+        if: runner.os == 'macOS'
+        run: |
+          brew install opencv
+          brew install ffmpeg
 
       - name: Query dependencies
         run: |

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find ID number from ID gloss — gloss2id • signglossR</title>
+<title>Find ID gloss from ID number — id2gloss1 • signglossR</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Find ID number from ID gloss — gloss2id" />
-<meta property="og:description" content="This function inputs an ID gloss and outputs an
-ID number linked to the same sign (its dictionary entry)." />
+<meta property="og:title" content="Find ID gloss from ID number — id2gloss1" />
+<meta property="og:description" content="This function inputs an ID number as an integer or string and outputs the
+unique ID gloss linked to the same sign (its dictionary entry)." />
 
 
 
@@ -121,24 +121,24 @@ ID number linked to the same sign (its dictionary entry)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find ID number from ID gloss</h1>
-    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/gloss2id.R'><code>R/gloss2id.R</code></a></small>
-    <div class="hidden name"><code>gloss2id.Rd</code></div>
+    <h1>Find ID gloss from ID number</h1>
+    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/id2gloss1.R'><code>R/id2gloss1.R</code></a></small>
+    <div class="hidden name"><code>id2gloss1.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function inputs an ID gloss and outputs an
-ID number linked to the same sign (its dictionary entry).</p>
+    <p>This function inputs an ID number as an integer or string and outputs the
+unique ID gloss linked to the same sign (its dictionary entry).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gloss2id</span>(<span class='no'>gloss</span>, <span class='kw'>acronym</span> <span class='kw'>=</span> <span class='st'>"sts"</span>)</pre>
+    <pre class="usage"><span class='fu'>id2gloss1</span>(<span class='no'>id</span>, <span class='kw'>acronym</span> <span class='kw'>=</span> <span class='st'>"sts"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gloss</th>
-      <td><p>ID gloss for the sign</p></td>
+      <th>id</th>
+      <td><p>ID number for the sign</p></td>
     </tr>
     <tr>
       <th>acronym</th>

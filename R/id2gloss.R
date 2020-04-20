@@ -7,7 +7,7 @@
 #' @param acronym The acronym for the target sign language (e.g. "STS")
 #' @return The unique ID gloss linked to the sign used as its label in Signbank
 #' @export
-id2gloss <- function(ids, acronym="asl") {
+id2gloss <- function(ids, acronym="sts") {
   sequence <- c()
   for (i in ids) {
     sequence <- c(sequence, signglossR::id2gloss1(i, acronym))

@@ -23,7 +23,7 @@
 get_images <- function(id, acronym="sts", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70, overlay=FALSE, trim=1) {
     sequence <- c()
     for (i in id) {
-      sequence <- c(sequence, signglossR::get_image(i, acronym, gravity, location, fontsize, overlay, trim))
+      sequence <- c(sequence, signglossR::get_image(i, acronym, glosstext, gravity, location, fontsize, overlay, trim))
     }
     return(sequence)
   }

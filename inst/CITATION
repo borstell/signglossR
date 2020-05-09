@@ -6,11 +6,11 @@ citEntry(entry = "manual",
          author = "Carl Börstell",
          organization = "Radboud University, Nijmegen",
          address = "Nijmegen",
-         note = "R package version 1.2.0",
+         note = "R package version 2.0.0",
          year = "2020",
          url = "https://github.com/borstell/signglossR",
          textVersion = paste("Börstell, Carl. 2020.",
                               "signglossR: Facilitating visual representation of sign language data.",
-                              "version 1.2.0. Radboud University, Nijmegen.",
+                              "version 2.0.0. Radboud University, Nijmegen.",
                               "https://github.com/borstell/signglossR")
 )

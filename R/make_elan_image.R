@@ -80,8 +80,5 @@ make_elan_image <- function(path, destination="./", segmentation_tier="", gloss_
       outfile <- destination
     }
     signglossR::combine_images(signs, outfile)
-    for (sign in signs) {
-      system(paste0("rm ", sign))
-    }
   }
 }

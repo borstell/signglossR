@@ -51,8 +51,5 @@ combine_images <- function(images, destination="./", stack=FALSE, overlay=FALSE,
     }
     magick::image_write(magick::image_append(magick::image_scale(magick::image_read(files), dimstring), stack = stack), destination)
   }
-  for (i in files) {
-    system(paste0("rm ", i))
-  }
   return(destination)
 }

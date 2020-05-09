@@ -41,7 +41,6 @@ combine_images <- function(images, destination="./", stack=FALSE, overlay=FALSE,
     files <- new_files
     }
   }
-  print(files)
   if (overlay == TRUE) {
     unlist(sapply(2:length(files), function(i) system(paste("convert",files[i], files[i-1],"-alpha set -compose dissolve -define compose:args='25' -gravity Center -composite",destination,sep=" "))))
   }
@@ -52,7 +51,7 @@ combine_images <- function(images, destination="./", stack=FALSE, overlay=FALSE,
     }
     magick::image_write(magick::image_append(magick::image_scale(magick::image_read(files), dimstring), stack = stack), destination)
   }
-  for (i in new_files) {
+  for (i in files) {
     system(paste0("rm ", i))
   }
   return(destination)

@@ -38,7 +38,6 @@ make_elan_video <- function(path, destination="./", segmentation_tier="", gloss_
   else {
     vid <- video
   }
-  print(vid)
   vid_info <- av::av_video_info(vid)
   fps <- vid_info$video$framerate
   v_h <- vid_info$video$height
@@ -121,7 +120,7 @@ make_elan_video <- function(path, destination="./", segmentation_tier="", gloss_
       clip_frames <- magick::image_annotate(clip_frames, text = frame_data[start:end,]$sub, size = gloss_size, color = "white", boxcolor = "black", gravity = "south")
     }
     if (destination == "./" | length(clips)>1) {
-      outfile <- paste0(destination, gsub(".eaf", "", gsub(".*/", "", frame_data[1,]$file)), "_", n, ".mp4")
+      outfile <- paste0(destination, gsub(".eaf", "", gsub(".*/", "", path)), "_", n, ".mp4")
     }
     else {
       outfile <- destination

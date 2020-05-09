@@ -6,6 +6,7 @@
 \usage{
 censor_image(
   file,
+  destination = "./",
   automatic = TRUE,
   style = "blur",
   blur = 8,
@@ -13,7 +14,9 @@ censor_image(
 )
 }
 \arguments{
-\item{file}{The path to the image to be modified}
+\item{file}{The path/filename to the image to be modified}
+
+\item{destination}{The path/filename to the censored output image}
 
 \item{automatic}{Whether to use automatic face detection or not (`automatic=TRUE` is default)}
 

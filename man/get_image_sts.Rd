@@ -4,10 +4,12 @@
 \alias{get_image_sts}
 \title{Get STS sign image (Svenskt teckenspråkslexikon)}
 \usage{
-get_image_sts(id, overlay = FALSE, trim = 1)
+get_image_sts(id, destination = "./", overlay = FALSE, trim = 1)
 }
 \arguments{
 \item{id}{ID number for the STS sign}
+
+\item{destination}{The path/filename of the downloaded image}
 
 \item{overlay}{Optional argument if overlay image wanted (defaults to FALSE)}
 

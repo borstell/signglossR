@@ -4,10 +4,12 @@
 \alias{get_video_sts}
 \title{Get STS sign video (Svenskt teckenspråkslexikon)}
 \usage{
-get_video_sts(id)
+get_video_sts(id, destination = "./")
 }
 \arguments{
 \item{id}{ID number for the STS sign}
+
+\item{destination}{The path/filename of the downloaded video}
 }
 \value{
 The name of the video file that was downloaded

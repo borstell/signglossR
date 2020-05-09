@@ -6,6 +6,7 @@
 \usage{
 get_image_asl(
   id,
+  destination = "./",
   glosstext = FALSE,
   gravity = "north",
   location = "+10+20",
@@ -14,6 +15,8 @@ get_image_asl(
 }
 \arguments{
 \item{id}{ID number for the ASL sign}
+
+\item{destination}{The path/filename of the downloaded image}
 
 \item{glosstext}{Prints the ID gloss onto the image if set to `TRUE` (default = `FALSE`)}
 

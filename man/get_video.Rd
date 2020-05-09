@@ -4,10 +4,12 @@
 \alias{get_video}
 \title{Get sign video}
 \usage{
-get_video(id, acronym = "sts")
+get_video(id, destination = "./", acronym = "sts")
 }
 \arguments{
 \item{id}{ID number for the sign}
+
+\item{destination}{The path/filename of the downloaded video}
 
 \item{acronym}{The acronym for the target sign language (e.g. "STS")}
 }

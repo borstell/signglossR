@@ -11,6 +11,7 @@
 #' whether a horizontal trim (0 to 1; default=1) should be applied.
 #'
 #' @param id ID number for the sign
+#' @param destination The path/filename of the downloaded image
 #' @param acronym The acronym for the target sign language (e.g. "STS")
 #' @param glosstext Prints the ID gloss onto the image if set to `TRUE` (default = `FALSE`)
 #' @param gravity The anchor point of the text annotation if selected (default = "north")
@@ -20,13 +21,13 @@
 #' @param trim Optional argument if horizontal trim wanted (values 0 to 1; default=1)
 #' @return The path of the image file that was downloaded
 #' @export
-get_image <- function(id, acronym="sts", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70, overlay=FALSE, trim=1) {
+get_image <- function(id, destination="./", acronym="sts", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70, overlay=FALSE, trim=1) {
   acronym <- tolower(acronym)
   if (acronym == "asl") {
-    img_name <- signglossR::get_image_asl(id, glosstext, gravity, location, fontsize)
+    img_name <- signglossR::get_image_asl(id, destination, glosstext, gravity, location, fontsize)
   }
   if (acronym %in% c("sts", "ssl")) {
-    img_name <- signglossR::get_image_sts(id, overlay, trim)
+    img_name <- signglossR::get_image_sts(id, destination, overlay, trim)
   }
   return(img_name)
 }

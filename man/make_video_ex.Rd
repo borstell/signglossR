@@ -4,10 +4,12 @@
 \alias{make_video_ex}
 \title{Make a video example from a videofile (with ffmpeg)}
 \usage{
-make_video_ex(file, speed = 0.5, rep = FALSE)
+make_video_ex(video, destination = "./", speed = 0.5, rep = FALSE)
 }
 \arguments{
-\item{file}{The path to the video to be converted}
+\item{video}{The path/filename to the video to be modified}
+
+\item{destination}{The path/filename of the output video}
 
 \item{speed}{Set the speed of the video to a factor (0 to 1) of the original (default is .5)}
 

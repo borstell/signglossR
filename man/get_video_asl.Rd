@@ -4,10 +4,12 @@
 \alias{get_video_asl}
 \title{Get ASL sign video (ASL Signbank)}
 \usage{
-get_video_asl(id)
+get_video_asl(id, destination = "./")
 }
 \arguments{
 \item{id}{ID number for the ASL sign}
+
+\item{destination}{The path/filename of the downloaded video}
 }
 \value{
 The name of the video file that was downloaded

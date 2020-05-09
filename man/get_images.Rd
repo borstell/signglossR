@@ -2,10 +2,11 @@
 % Please edit documentation in R/get_images.R
 \name{get_images}
 \alias{get_images}
-\title{Get sign image}
+\title{Get multiple sign images}
 \usage{
 get_images(
-  id,
+  ids,
+  directory = "./",
   acronym = "sts",
   glosstext = FALSE,
   gravity = "north",
@@ -16,7 +17,9 @@ get_images(
 )
 }
 \arguments{
-\item{id}{ID number for the sign}
+\item{ids}{ID numbers for the signs}
+
+\item{directory}{The destination directory for the downloaded images}
 
 \item{acronym}{The acronym for the target sign language (e.g. "STS")}
 
@@ -33,11 +36,11 @@ get_images(
 \item{trim}{Optional argument if horizontal trim wanted (values 0 to 1; default=1)}
 }
 \value{
-The path of the image file that was downloaded
+The path of the image files that were downloaded
 }
 \description{
-This function inputs an  ID number and downloads the
-image of the corresponding sign entry in the selected language.
+This function inputs a string/vector of ID numbers and downloads the
+images of the corresponding sign entries in the selected language.
 }
 \details{
 Arguments available for ASL:

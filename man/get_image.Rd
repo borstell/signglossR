@@ -6,6 +6,7 @@
 \usage{
 get_image(
   id,
+  destination = "./",
   acronym = "sts",
   glosstext = FALSE,
   gravity = "north",
@@ -17,6 +18,8 @@ get_image(
 }
 \arguments{
 \item{id}{ID number for the sign}
+
+\item{destination}{The path/filename of the downloaded image}
 
 \item{acronym}{The acronym for the target sign language (e.g. "STS")}
 

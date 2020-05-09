@@ -1,6 +1,6 @@
 Package: signglossR
 Title: Facilitates Visual Representation of Sign Language Data
-Version: 1.2.0
+Version: 2.0.0
 Authors@R: person(given = "Carl",
            family = "Börstell",
            role = c("aut", "cre"),
@@ -18,17 +18,25 @@ License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 LazyData: true
 Imports:
-    xml2,
-    rvest,
     magrittr,
+    tidyr,
+    dplyr,
+    data.table,
     stringr,
+    hash,
     assertthat,
     magick,
+    av,
+    opencv,
     utils,
     tools,
     urltools,
-    opencv,
-    av
+    xml2,
+    rvest,
+    jsonlite,
+    ggplot2,
+    ggforce,
+    gganimate
 Suggests: 
     knitr,
     rmarkdown

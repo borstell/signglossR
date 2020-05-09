@@ -4,9 +4,10 @@
 #' of the corresponding sign entry in Svenskt teckenspråkslexikon.
 #'
 #' @param id ID number for the STS sign
+#' @param destination The path/filename of the downloaded video
 #' @return The name of the video file that was downloaded
 #' @export
-get_video_sts <- function(id) {
+get_video_sts <- function(id, destination="./") {
   if (signglossR::isNotNumeric(as.character(id))) {
     print("The <id> argument has to be numeric (e.g. '3' or '00004')")
     stop()
@@ -18,6 +19,9 @@ get_video_sts <- function(id) {
   sts_vid <- paste0("https://teckensprakslexikon.su.se", sts_vid[1])
   vid_name <- paste0("STS_", gsub(".*/", "", sts_vid))
   path <- paste0("./", vid_name)
+  if (destination != "./") {
+    path <- destination
+  }
   utils::download.file(sts_vid, destfile = path)
   return(path)
 }

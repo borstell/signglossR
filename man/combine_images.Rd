@@ -4,12 +4,18 @@
 \alias{combine_images}
 \title{Combine images}
 \usage{
-combine_images(input, destfile = "", stack = FALSE, overlay = FALSE, trim = 1)
+combine_images(
+  images,
+  destination = "./",
+  stack = FALSE,
+  overlay = FALSE,
+  trim = 1
+)
 }
 \arguments{
-\item{input}{A list of files (vector or comma-separated string) to be combined}
+\item{images}{A list of image files (vector or comma-separated string) to be combined}
 
-\item{destfile}{The specified path to the modified file created}
+\item{destination}{The path/filename of the combined output image}
 
 \item{stack}{Optional argument if concatenated image wanted: default FALSE gives horizontal sequence; TRUE gives vertically stacked}
 

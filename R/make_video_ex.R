@@ -2,12 +2,17 @@
 #'
 #' This function inputs a video and allows for repeated and/or slowmotion playback
 #'
-#' @param file The path to the video to be converted
+#' @param video The path/filename to the video to be modified
+#' @param destination The path/filename of the output video
 #' @param speed Set the speed of the video to a factor (0 to 1) of the original (default is .5)
 #' @param rep If output video is to be repeated through concatenation (default is `FALSE`)
 #' @return The name of the output video file
 #' @export
-make_video_ex <- function(file, speed=.5, rep=FALSE) {
+make_video_ex <- function(video, destination="./", speed=.5, rep=FALSE) {
+  tmp_dir <- gsub("//", "/", tempdir())
+  new_vid <- paste0(tmp_dir,"/", gsub(".*/","",video))
+  system(paste0("cp ", video, " ", new_vid))
+  video <- new_vid
   speedlabel <- speed*100
   if (speed > 0) {
     speed <- 1/speed
@@ -15,22 +20,30 @@ make_video_ex <- function(file, speed=.5, rep=FALSE) {
   else {
     speed <- 0.1
   }
-  extension <- paste0(".", tools::file_ext(file))
-  outfile <- paste0(gsub(extension, "", file), "_", speedlabel, extension)
+  extension <- paste0(".", tools::file_ext(video))
+  outfile <- paste0(gsub(extension, "", video), "_", speedlabel, extension)
   if (file.exists(outfile)) {
     system(paste0("rm ", outfile))
   }
-  system(paste0('ffmpeg -i ', file, ' -filter:v "setpts=', speed, '*PTS" ', outfile))
+  system(paste0('ffmpeg -i ', video, ' -filter:v "setpts=', speed, '*PTS" ', outfile))
   if (rep == TRUE) {
-    txt_list <- "./signglossr_concat_list.txt"
+    txt_list <- paste0(tmp_dir,"/signglossr_concat_list.txt")
     newfile <- paste0(paste0(gsub(extension, "", outfile)), "_", "REP", extension)
     if (file.exists(newfile)) {
       system(paste0("rm ", newfile))
     }
-    system(paste0("(echo file \'", outfile, "\' & echo file \'", file, "\' )>", txt_list))
+    system(paste0("(echo file \'", outfile, "\' & echo file \'", video, "\' )>", txt_list))
     system(paste0("ffmpeg -safe 0 -f concat -i ", txt_list, " -c copy ", newfile))
     system(paste0("rm ", txt_list))
     outfile <- newfile
   }
-  return(outfile)
+  if (destination == "./") {
+    destination <- paste0("./",gsub(".*/", "", outfile))
+  }
+  system(paste0("mv ",outfile, " ", destination))
+  for (f in c(new_vid, gsub("_REP", "", outfile))) {
+    print(f)
+    system(paste0("rm ", f))
+  }
+  return(destination)
 }

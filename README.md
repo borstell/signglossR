@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
-**v1.2.0**
+**v2.0.0**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -14,9 +14,9 @@ devtools::install_github("borstell/signglossR")
 # Introduction
 The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)). The intention of this package is to collect many different existing resources and adapt them to sign language researchers. The hard work in actual coding has been done by others -- `signglossR` relies heavily on other R packages such as [`magick`](https://ropensci.org/tutorials/magick_tutorial/), [`opencv`](https://docs.ropensci.org/opencv), and [`av`](https://docs.ropensci.org/av/), and also makes use of background command line prompts through R, especially [`ImageMagick`](https://imagemagick.org) and [`ffmpeg`](https://ffmpeg.org).
 
-The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. There are also functions 
+The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. (TBA: A later release will hopefully also work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.)
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.
 
 The section [Miscellaneous](#miscellaneous) describes other functions not directly related to image or video processing.
 

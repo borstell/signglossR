@@ -88,13 +88,13 @@ This function inputs an  ID number and downloads the GIF of the corresponding si
 
 Example:
 ```
-get_image(id=10, acronym="sts")
+get_gif(10)
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
 
 
 #### Subfunctions
-The `get_sign()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_sign_asl()` and `get_sign_sts()`.
+The `get_image()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_image_asl()` and `get_image_sts()`.
 
 ### `censor_image()`
 Maybe you need to censor part of your image for some reason. Perhaps to hide the identity of the signer. This can be done using the function `censor_image()` which allows you to either blur or completely censor some region of the image. Default `style` is set to `blur`. If `automatic` is set to `FALSE` (default is `TRUE`), you will need to define a geometry region; if set to `TRUE`, the imported function `opencv::ocv_facemask()` will automatically detect faces and use as a mask for blurring/censoring.
@@ -215,7 +215,30 @@ get_video(42) %>%
 #### Subfunctions
 The `get_video()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_video_asl()` and `get_video_sts()`.
 
-### ~~`elan2video()`~~
+
+## ELAN functionality
+### `read_elan()`
+This function reads ELAN annotation file (.eaf) in a directory and outputs a data frame.
+
+### `make_elan_image()`
+This function creates image files (with or without text) from an ELAN annotation file.
+
+![[Svensk teckenspråkskorpus (2020)](https://teckensprakskorpus.su.se/#/)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/elan_image.jpeg)
+
+### `make_elan_video()`
+This function creates video file clips (with or without text) from an ELAN annotation file.
+
+
+## Openpose functionality
+### `read_openpose()`
+This function reads OpenPose generated JSON files in a directory and outputs a data frame.
+
+### `plot_openpose()`
+This function inputs a data frame from `read_openpose(wide=FALSE)` (.eaf) and plots the positions of the hands (keypoints 4 and 7) onto a estimated signer silhouette.
+
+### `make_avatar()`
+Mostly for fun, but can estimate a signer based on an Openpose data sequence.
+
 
 ## Miscellaneous
 ### `cite_source`

@@ -46,8 +46,8 @@ To cite the STS dictionary in publications, please use:
 A BibTeX entry for LaTeX users is
 
 @Manual{tsplex,
-    title = {Svenskt teckenspr{\aa}kslexikon},
-    author = {Svenskt teckenspr{\aa}kslexikon},
+    title = {Svenskt teckenspr\u00e5kslexikon},
+    author = {Svenskt teckenspr\u00e5kslexikon},
     organization = {Sign Language Section, Department of Linguistics, Stockholm University},
     address = {Stockholm},
     year = {2020},
@@ -69,9 +69,9 @@ A BibTeX entry for LaTeX users is
 
 @Manual{signglossR,
     title = {{signglossR}: Facilitating visual representation of sign language data},
-    author = {Carl B\u00Dfrstell},
+    author = {Carl B\u00f6rstell},
     organization = {Stockholm University},
-    address = {Nijmegen},
+    address = {Stockholm},
     note = {R package version 2.1.0},
     year = {2021},
     url = {https://github.com/borstell/signglossR},

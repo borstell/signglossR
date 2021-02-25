@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
-**v2.0.0**
+**v2.1.0**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -16,7 +16,7 @@ The R package `signglossR` includes various R functions (created, adapted, and i
 
 The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.
 
-The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.
+The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing. From v2.1.0 it is also possible to download GIFs for STS directly with `get_gif()`.
 
 The section [Miscellaneous](#miscellaneous) describes other functions not directly related to image or video processing.
 
@@ -81,6 +81,16 @@ This looks better! In other cases, the default `gravity` position may be perfect
 ```
 get_image(id=103, acronym="asl", glosstext=TRUE, gravity="southwest")
 ```
+
+## GIFs
+### `get_gif()`
+This function inputs an  ID number and downloads the GIF of the corresponding sign entry in the selected language (currently only STS.
+
+Example:
+```
+get_image(id=10, acronym="sts")
+```
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
 
 
 #### Subfunctions
@@ -162,7 +172,7 @@ This function inputs an  ID number and downloads the video of the corresponding 
 
 Example:
 ```
-get_image(id=10, acronym="sts")
+get_video(id=10, acronym="sts")
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
 
@@ -315,8 +325,8 @@ citation("signglossR")
 
 To cite reports in publications, please use:
 
-  Börstell, Carl. 2020. signglossR: Facilitating visual representation of sign
-  language data. R package version 1.2.0. Radboud University, Nijmegen.
+  Börstell, Carl. 2021. signglossR: Facilitating visual representation of sign
+  language data. R package version 2.1.0. Stockholm University.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -324,10 +334,10 @@ A BibTeX entry for LaTeX users is
 @Manual{signglossR,
     title = {{signglossR}: Facilitating visual representation of sign language data},
     author = {Carl Börstell},
-    organization = {Radboud University, Nijmegen},
-    address = {Nijmegen},
-    note = {R package version 1.2.0},
-    year = {2020},
+    organization = {Stockholm University},
+    address = {Stockholm},
+    note = {R package version 2.1.0},
+    year = {2021},
     url = {https://github.com/borstell/signglossR},
   }
 ```

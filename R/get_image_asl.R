@@ -13,7 +13,7 @@
 #' @param fontsize The fontsize for the text annotation (default = 70)
 #' @return The path of the image file that was downloaded
 #' @export
-get_image_asl <- function(id, destination="./", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70) {
+get_image_asl <- function(id, destination="./", glosstext=FALSE, gravity="north", location="+20+20", fontsize=70) {
   if (signglossR::isNotNumeric(id)) {
     id <- signglossR::gloss2id_asl(id)
   }

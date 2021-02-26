@@ -21,7 +21,7 @@
 #' @param trim Optional argument if horizontal trim wanted (values 0 to 1; default=1)
 #' @return The path of the image files that were downloaded
 #' @export
-get_images <- function(ids, directory="./", acronym="sts", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70, overlay=FALSE, trim=1) {
+get_images <- function(ids, directory="./", acronym="sts", glosstext=FALSE, gravity="north", location="+20+20", fontsize=70, overlay=FALSE, trim=1) {
   current_dir <- paste0(getwd(),"/")
   if (directory !="./") {
     setwd(directory)

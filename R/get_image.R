@@ -21,7 +21,7 @@
 #' @param trim Optional argument if horizontal trim wanted (values 0 to 1; default=1)
 #' @return The path of the image file that was downloaded
 #' @export
-get_image <- function(id, destination="./", acronym="sts", glosstext=FALSE, gravity="north", location="+10+20", fontsize=70, overlay=FALSE, trim=1) {
+get_image <- function(id, destination="./", acronym="sts", glosstext=FALSE, gravity="north", location="+20+20", fontsize=70, overlay=FALSE, trim=1) {
   acronym <- tolower(acronym)
   if (acronym == "asl") {
     img_name <- signglossR::get_image_asl(id, destination, glosstext, gravity, location, fontsize)

@@ -10,7 +10,7 @@ get_image(
   acronym = "sts",
   glosstext = FALSE,
   gravity = "north",
-  location = "+10+20",
+  location = "+20+20",
   fontsize = 70,
   overlay = FALSE,
   trim = 1

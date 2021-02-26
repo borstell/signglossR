@@ -9,7 +9,7 @@ get_image_asl(
   destination = "./",
   glosstext = FALSE,
   gravity = "north",
-  location = "+10+20",
+  location = "+20+20",
   fontsize = 70
 )
 }

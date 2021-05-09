@@ -46,6 +46,8 @@ image of the corresponding sign entry in the selected language." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,9 +59,16 @@ image of the corresponding sign entry in the selected language." />
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,19 +82,13 @@ image of the corresponding sign entry in the selected language." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">signglossR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -104,7 +107,7 @@ image of the corresponding sign entry in the selected language." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/borstell/signglossR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,16 +134,17 @@ image of the corresponding sign entry in the selected language." />
 image of the corresponding sign entry in the selected language.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_image</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>acronym</span> <span class='kw'>=</span> <span class='st'>"sts"</span>,
-  <span class='kw'>glosstext</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>gravity</span> <span class='kw'>=</span> <span class='st'>"north"</span>,
-  <span class='kw'>location</span> <span class='kw'>=</span> <span class='st'>"+10+20"</span>,
-  <span class='kw'>fontsize</span> <span class='kw'>=</span> <span class='fl'>70</span>,
-  <span class='kw'>overlay</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>trim</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_image</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  destination <span class='op'>=</span> <span class='st'>"./"</span>,
+  acronym <span class='op'>=</span> <span class='st'>"sts"</span>,
+  glosstext <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  gravity <span class='op'>=</span> <span class='st'>"north"</span>,
+  location <span class='op'>=</span> <span class='st'>"+20+20"</span>,
+  fontsize <span class='op'>=</span> <span class='fl'>70</span>,
+  overlay <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  trim <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,6 +152,10 @@ image of the corresponding sign entry in the selected language.</p>
     <tr>
       <th>id</th>
       <td><p>ID number for the sign</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>The path/filename of the downloaded image</p></td>
     </tr>
     <tr>
       <th>acronym</th>
@@ -201,11 +209,11 @@ whether a horizontal trim (0 to 1; default=1) should be applied.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Börstell.</p>
+  <p><p>Developed by Carl Börstell.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -213,6 +221,8 @@ whether a horizontal trim (0 to 1; default=1) should be applied.</p>
 
   
 
+
+  
 
   </body>
 </html>

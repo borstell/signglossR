@@ -45,6 +45,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -56,9 +58,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +81,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">signglossR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -103,7 +106,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/borstell/signglossR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,14 +132,18 @@
     <p>This function inputs a video and allows for repeated and/or slowmotion playback</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_video_ex</span>(<span class='no'>file</span>, <span class='kw'>speed</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>rep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>make_video_ex</span><span class='op'>(</span><span class='va'>video</span>, destination <span class='op'>=</span> <span class='st'>"./"</span>, speed <span class='op'>=</span> <span class='fl'>0.5</span>, rep <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>The path to the video to be converted</p></td>
+      <th>video</th>
+      <td><p>The path/filename to the video to be modified</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>The path/filename of the output video</p></td>
     </tr>
     <tr>
       <th>speed</th>
@@ -163,11 +170,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Börstell.</p>
+  <p><p>Developed by Carl Börstell.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -175,6 +182,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cite source — cite_source • signglossR</title>
+<title>Read OpenPose data (.json) — read_openpose • signglossR</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Cite source — cite_source" />
-<meta property="og:description" content="This function inputs a sign language acronym (e.g. &quot;ASL&quot;) and
-outputs the preferred citation for the original source used in signglossR." />
+<meta property="og:title" content="Read OpenPose data (.json) — read_openpose" />
+<meta property="og:description" content="This function reads OpenPose generated JSON files in a directory and outputs a data frame" />
 
 
 
@@ -124,30 +123,37 @@ outputs the preferred citation for the original source used in signglossR." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cite source</h1>
-    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/cite_source.R'><code>R/cite_source.R</code></a></small>
-    <div class="hidden name"><code>cite_source.Rd</code></div>
+    <h1>Read OpenPose data (.json)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/read_openpose.R'><code>R/read_openpose.R</code></a></small>
+    <div class="hidden name"><code>read_openpose.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function inputs a sign language acronym (e.g. "ASL") and
-outputs the preferred citation for the original source used in signglossR.</p>
+    <p>This function reads OpenPose generated JSON files in a directory and outputs a data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cite_source</span><span class='op'>(</span>acronym <span class='op'>=</span> <span class='st'>"signglossR"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>read_openpose</span><span class='op'>(</span><span class='va'>path</span>, wide <span class='op'>=</span> <span class='cn'>TRUE</span>, fill_zero <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>acronym</th>
-      <td><p>A sign language acronym used by signglossR</p></td>
+      <th>path</th>
+      <td><p>The path to the directory with OpenPose JSON data</p></td>
+    </tr>
+    <tr>
+      <th>wide</th>
+      <td><p>Whether the output data frame should be transformed to wide format (default=TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>fill_zero</th>
+      <td><p>Whether zero values should be filled with nearest non-zero value (default=FALSE)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The preferred citation format for the language resource used</p>
+    <p>A data frame containing the OpenPose data</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

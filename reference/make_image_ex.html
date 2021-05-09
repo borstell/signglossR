@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Make image example from an image file — make_image_ex • signglossR</title>
+<title>Make an image example from an image file — make_image_ex • signglossR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Make image example from an image file — make_image_ex" />
+<meta property="og:title" content="Make an image example from an image file — make_image_ex" />
 <meta property="og:description" content="This function inputs an image file and allows for resizing, cropping, and text annotations" />
+
+
 
 
 
@@ -56,9 +58,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,19 +81,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">signglossR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -103,7 +106,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/borstell/signglossR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +123,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Make image example from an image file</h1>
+    <h1>Make an image example from an image file</h1>
     <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/make_image_ex.R'><code>R/make_image_ex.R</code></a></small>
     <div class="hidden name"><code>make_image_ex.Rd</code></div>
     </div>
@@ -129,39 +132,39 @@
     <p>This function inputs an image file and allows for resizing, cropping, and text annotations</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_image_ex</span>(
-  <span class='no'>file</span>,
-  <span class='kw'>destfile</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>crop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"100x150+100+100"</span>,
-  <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>textcolor</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
-  <span class='kw'>font</span> <span class='kw'>=</span> <span class='st'>"Helvetica"</span>,
-  <span class='kw'>fontsize</span> <span class='kw'>=</span> <span class='st'>"70"</span>,
-  <span class='kw'>gravity</span> <span class='kw'>=</span> <span class='st'>"southwest"</span>,
-  <span class='kw'>location</span> <span class='kw'>=</span> <span class='st'>"+20+20"</span>,
-  <span class='kw'>border</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>make_image_ex</span><span class='op'>(</span>
+  <span class='va'>image</span>,
+  destination <span class='op'>=</span> <span class='st'>"./"</span>,
+  scale <span class='op'>=</span> <span class='fl'>1</span>,
+  crop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  region <span class='op'>=</span> <span class='st'>"100x150+100+100"</span>,
+  text <span class='op'>=</span> <span class='st'>""</span>,
+  textcolor <span class='op'>=</span> <span class='st'>"white"</span>,
+  font <span class='op'>=</span> <span class='st'>"Helvetica"</span>,
+  fontsize <span class='op'>=</span> <span class='st'>"70"</span>,
+  gravity <span class='op'>=</span> <span class='st'>"southwest"</span>,
+  location <span class='op'>=</span> <span class='st'>"+20+20"</span>,
+  border <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>The path to the image to be modified</p></td>
+      <th>image</th>
+      <td><p>The path to the image file to be modified</p></td>
     </tr>
     <tr>
-      <th>destfile</th>
-      <td><p>The specified path to the modified file created</p></td>
-    </tr>
-    <tr>
-      <th>crop</th>
-      <td><p>Whether to use automatic face detection or not (`automatic=TRUE` is default)</p></td>
+      <th>destination</th>
+      <td><p>The path/filename of the output image</p></td>
     </tr>
     <tr>
       <th>scale</th>
       <td><p>The resizing proportion of the original image (0 to 1; default is 1 = original size)</p></td>
+    </tr>
+    <tr>
+      <th>crop</th>
+      <td><p>Whether to crop image to region (`crop=FALSE` is default)</p></td>
     </tr>
     <tr>
       <th>region</th>
@@ -212,11 +215,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Carl Börstell.</p>
+  <p><p>Developed by Carl Börstell.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -224,6 +227,8 @@
 
   
 
+
+  
 
   </body>
 </html>

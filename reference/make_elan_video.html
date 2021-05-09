@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cite source — cite_source • signglossR</title>
+<title>Make ELAN video — make_elan_video • signglossR</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Cite source — cite_source" />
-<meta property="og:description" content="This function inputs a sign language acronym (e.g. &quot;ASL&quot;) and
-outputs the preferred citation for the original source used in signglossR." />
+<meta property="og:title" content="Make ELAN video — make_elan_video" />
+<meta property="og:description" content="This function creates video file clips (with or without text) from an ELAN annotation file" />
 
 
 
@@ -124,30 +123,81 @@ outputs the preferred citation for the original source used in signglossR." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cite source</h1>
-    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/cite_source.R'><code>R/cite_source.R</code></a></small>
-    <div class="hidden name"><code>cite_source.Rd</code></div>
+    <h1>Make ELAN video</h1>
+    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/make_elan_video.R'><code>R/make_elan_video.R</code></a></small>
+    <div class="hidden name"><code>make_elan_video.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function inputs a sign language acronym (e.g. "ASL") and
-outputs the preferred citation for the original source used in signglossR.</p>
+    <p>This function creates video file clips (with or without text) from an ELAN annotation file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cite_source</span><span class='op'>(</span>acronym <span class='op'>=</span> <span class='st'>"signglossR"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_elan_video</span><span class='op'>(</span>
+  <span class='va'>path</span>,
+  destination <span class='op'>=</span> <span class='st'>"./"</span>,
+  segmentation_tier <span class='op'>=</span> <span class='st'>""</span>,
+  gloss_tier1 <span class='op'>=</span> <span class='st'>""</span>,
+  gloss_tier2 <span class='op'>=</span> <span class='st'>""</span>,
+  gloss_gravity <span class='op'>=</span> <span class='st'>"northwest"</span>,
+  video <span class='op'>=</span> <span class='st'>""</span>,
+  segment <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  gloss_size <span class='op'>=</span> <span class='fl'>1</span>,
+  subtitle_size <span class='op'>=</span> <span class='fl'>1</span>,
+  padding <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>acronym</th>
-      <td><p>A sign language acronym used by signglossR</p></td>
+      <th>path</th>
+      <td><p>The path to a single ELAN .eaf</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>The path/file of the output video</p></td>
+    </tr>
+    <tr>
+      <th>segmentation_tier</th>
+      <td><p>List of specific tiers with segmentation annotations to be included</p></td>
+    </tr>
+    <tr>
+      <th>gloss_tier1</th>
+      <td><p>Name of gloss tier with gloss annotations to be included</p></td>
+    </tr>
+    <tr>
+      <th>gloss_tier2</th>
+      <td><p>Name of second gloss tier with gloss annotations to be included</p></td>
+    </tr>
+    <tr>
+      <th>gloss_gravity</th>
+      <td><p>The gravity (=anchor point) of the text of the gloss text</p></td>
+    </tr>
+    <tr>
+      <th>video</th>
+      <td><p>Specify a video path to be used (if not, first linked video is used)</p></td>
+    </tr>
+    <tr>
+      <th>segment</th>
+      <td><p>Whether to cut each segmentation into a separate video (default=FALSE)</p></td>
+    </tr>
+    <tr>
+      <th>gloss_size</th>
+      <td><p>Fontsize of gloss text in video (default=1; 0 results in no glosses)</p></td>
+    </tr>
+    <tr>
+      <th>subtitle_size</th>
+      <td><p>Fontsize of subtitle text based on segmentation tier cell text in video (default=1; 0 results in no subtitles)</p></td>
+    </tr>
+    <tr>
+      <th>padding</th>
+      <td><p>Whether to add n frames before and after the start/end to segment (default=0)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The preferred citation format for the language resource used</p>
+    <p>A video file based on ELAN annotations</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

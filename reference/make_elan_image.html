@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cite source — cite_source • signglossR</title>
+<title>Make ELAN image — make_elan_image • signglossR</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Cite source — cite_source" />
-<meta property="og:description" content="This function inputs a sign language acronym (e.g. &quot;ASL&quot;) and
-outputs the preferred citation for the original source used in signglossR." />
+<meta property="og:title" content="Make ELAN image — make_elan_image" />
+<meta property="og:description" content="This function creates image files (with or without text) from an ELAN annotation file" />
 
 
 
@@ -124,30 +123,106 @@ outputs the preferred citation for the original source used in signglossR." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cite source</h1>
-    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/cite_source.R'><code>R/cite_source.R</code></a></small>
-    <div class="hidden name"><code>cite_source.Rd</code></div>
+    <h1>Make ELAN image</h1>
+    <small class="dont-index">Source: <a href='https://github.com/borstell/signglossR/blob/master/R/make_elan_image.R'><code>R/make_elan_image.R</code></a></small>
+    <div class="hidden name"><code>make_elan_image.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function inputs a sign language acronym (e.g. "ASL") and
-outputs the preferred citation for the original source used in signglossR.</p>
+    <p>This function creates image files (with or without text) from an ELAN annotation file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cite_source</span><span class='op'>(</span>acronym <span class='op'>=</span> <span class='st'>"signglossR"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_elan_image</span><span class='op'>(</span>
+  <span class='va'>path</span>,
+  destination <span class='op'>=</span> <span class='st'>"./"</span>,
+  segmentation_tier <span class='op'>=</span> <span class='st'>""</span>,
+  gloss_tier <span class='op'>=</span> <span class='st'>""</span>,
+  video <span class='op'>=</span> <span class='st'>""</span>,
+  combine <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  scale <span class='op'>=</span> <span class='fl'>1</span>,
+  crop <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  region <span class='op'>=</span> <span class='st'>"100x150+100+100"</span>,
+  text <span class='op'>=</span> <span class='st'>""</span>,
+  textcolor <span class='op'>=</span> <span class='st'>"white"</span>,
+  font <span class='op'>=</span> <span class='st'>"Helvetica"</span>,
+  fontsize <span class='op'>=</span> <span class='st'>"40"</span>,
+  gravity <span class='op'>=</span> <span class='st'>"southwest"</span>,
+  location <span class='op'>=</span> <span class='st'>"+20+20"</span>,
+  border <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>acronym</th>
-      <td><p>A sign language acronym used by signglossR</p></td>
+      <th>path</th>
+      <td><p>The path to a single ELAN .eaf file or a directory with .eaf files</p></td>
+    </tr>
+    <tr>
+      <th>destination</th>
+      <td><p>The path/filename of the output image</p></td>
+    </tr>
+    <tr>
+      <th>segmentation_tier</th>
+      <td><p>List of specific tiers with segmentation annotations to be included</p></td>
+    </tr>
+    <tr>
+      <th>gloss_tier</th>
+      <td><p>List of specific tiers with gloss annotations to be included</p></td>
+    </tr>
+    <tr>
+      <th>video</th>
+      <td><p>Specify a video path to be used (if not, first linked video per eaf is used)</p></td>
+    </tr>
+    <tr>
+      <th>combine</th>
+      <td><p>Represent each sign by an overlay of the first and last frame of the sign (default=TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>The resizing proportion of the original image (0 to 1; default is 1 = original size)</p></td>
+    </tr>
+    <tr>
+      <th>crop</th>
+      <td><p>Whether to crop image to region (`crop=FALSE` is default)</p></td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td><p>The region to be cropped (defaults to '100x150+100+100', (width x height +upper_x +upper_y)). Only for `crop=TRUE`</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>The text string to be added to the image</p></td>
+    </tr>
+    <tr>
+      <th>textcolor</th>
+      <td><p>The color of the text annotation (default is "white")</p></td>
+    </tr>
+    <tr>
+      <th>font</th>
+      <td><p>The font of the text annotation (default is "Helvetica")</p></td>
+    </tr>
+    <tr>
+      <th>fontsize</th>
+      <td><p>The fontsize of the text annotation (default is 70)</p></td>
+    </tr>
+    <tr>
+      <th>gravity</th>
+      <td><p>The anchor point of the added text (default is "southwest")</p></td>
+    </tr>
+    <tr>
+      <th>location</th>
+      <td><p>The location of the text relative to the anchor point</p></td>
+    </tr>
+    <tr>
+      <th>border</th>
+      <td><p>Set to `TRUE` if you want a black border frame for the output image</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The preferred citation format for the language resource used</p>
+    <p>The name of the image file(s) created</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -8,7 +8,7 @@
 #' @export
 id2gloss_asl <- function(id) {
   asl_id <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/dictionary/gloss/", id, ".html")) %>%
-    rvest::html_nodes("[id='annotation_idgloss_en_US']") %>%
+    rvest::html_elements("[id='annotation_idgloss_en_US']") %>%
     rvest::html_text()
   return(asl_id)
 }

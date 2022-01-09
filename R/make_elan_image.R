@@ -21,7 +21,7 @@
 #' @return The name of the image file(s) created
 #' @export
 make_elan_image <- function(path, destination="./", segmentation_tier="", gloss_tier="", video="", combine=TRUE, scale=1, crop=FALSE, region='100x150+100+100', text="", textcolor="white", font="Helvetica", fontsize="40", gravity="southwest", location="+20+20", border=FALSE) {
-  d <- signglossR::read_elan(path, segmentation_tier, gloss_tier, video)
+  d <- signglossR::segment_elan(path, segmentation_tier, gloss_tier, video)
 
   segs <- dplyr::filter(d, d$tier_cat == "segmentation")
   segs[order(segs$start_time),]

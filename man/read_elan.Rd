@@ -4,20 +4,15 @@
 \alias{read_elan}
 \title{Read ELAN data (.eaf)}
 \usage{
-read_elan(path, segmentation_tier = "", gloss_tier = "", video = "")
+read_elan(path)
 }
 \arguments{
 \item{path}{The path to a single ELAN .eaf file or a directory with .eaf files}
-
-\item{segmentation_tier}{List of specific tiers with segmentation annotations to be included}
-
-\item{gloss_tier}{List of specific tiers with gloss annotations to be included}
-
-\item{video}{Specify a video path to be used (if not, first linked video per eaf is used)}
 }
 \value{
 A data frame containing the ELAN data
 }
 \description{
-This function reads ELAN annotation file (.eaf) in a directory and outputs a data frame
+This function reads ELAN annotation files (.eaf) in a directory,
+or a single ELAN file, and outputs a data frame
 }

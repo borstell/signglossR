@@ -12,11 +12,12 @@ gloss2id_asl <- function(gloss) {
   }
   else {
     asl_gloss <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu/signs/search/?search=%5E", gloss, "%24&keyword=")) %>%
-      rvest::html_nodes("*") %>%
-      rvest::html_attrs()
-    asl_class <- gsub("_.*", "", as.character(asl_gloss[745]))
+      rvest::html_elements("tbody") %>%
+      rvest::html_children() %>%
+      rvest::html_attr("id")
+    asl_class <- gsub("_.*", "", as.character(asl_gloss))
     if (asl_class == "focusgloss") {
-      asl_id <- gsub(".*_", "", as.character(asl_gloss[745]))
+      asl_id <- gsub(".*_", "", as.character(asl_gloss))
       return(as.character(asl_id))
     }
     else {

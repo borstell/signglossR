@@ -18,7 +18,7 @@ get_image_asl <- function(id, destination="./", glosstext=FALSE, gravity="north"
     id <- signglossR::gloss2id_asl(id)
   }
   asl_vid <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu", "/dictionary/gloss/", id, ".html")) %>%
-    rvest::html_nodes("[id='videoplayer']") %>%
+    rvest::html_elements("[id='videoplayer']") %>%
     rvest::html_attr("src")
   asl_img <- gsub("mp4", "jpg", gsub("/glossvideo/", "/glossimage/", asl_vid))
   img_name <- paste0("./ASL_", gsub(".*/", "", asl_img))

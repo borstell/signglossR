@@ -14,7 +14,7 @@ get_video_sts <- function(id, destination="./") {
   }
   id <- stringr::str_pad(id, 5, pad = "0")
   sts_vid <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/ord/", id)) %>%
-    rvest::html_nodes("[type='video/mp4']") %>%
+    rvest::html_elements("[type='video/mp4']") %>%
     rvest::html_attr("src")
   sts_vid <- paste0("https://teckensprakslexikon.su.se", sts_vid[1])
   vid_name <- paste0("STS_", gsub(".*/", "", sts_vid))

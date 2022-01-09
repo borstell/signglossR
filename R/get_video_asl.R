@@ -12,7 +12,7 @@ get_video_asl <- function(id, destination="./") {
     id <- signglossR::gloss2id_asl(id)
   }
   asl_vid <- xml2::read_html(paste0("https://aslsignbank.haskins.yale.edu", "/dictionary/gloss/", id, ".html")) %>%
-    rvest::html_nodes("[id='videoplayer']") %>%
+    rvest::html_elements("[id='videoplayer']") %>%
     rvest::html_attr("src")
   vid_name <- paste0("ASL_", gsub(".*/", "", asl_vid))
   path <- paste0("./", vid_name)

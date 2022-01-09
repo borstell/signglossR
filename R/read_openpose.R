@@ -23,8 +23,8 @@ read_openpose <- function(path, wide=TRUE, fill_zero=FALSE) {
   keys <- dplyr::bind_rows(datalist)
   if (wide == TRUE) {
     keys <- keys %>%
-      dplyr::group_by(keys$frame, keys$x, keys$y, keys$ci, keys$keypoint) %>%
-      tidyr::pivot_wider(names_from = keys$keypoint, values_from = c(keys$x, keys$y, keys$ci))
+      dplyr::group_by("frame") %>%
+      tidyr::pivot_wider(names_from = "keypoint", values_from = c("x", "y", "ci"))
     if (fill_zero) {
       keys <- dplyr::na_if(keys, 0)
       keys <- data.frame(keys)

@@ -4,13 +4,13 @@ citHeader("To cite signglossR in publications, please use:")
 citEntry(entry = "manual",
          title = "{signglossR}: Facilitating visual representation of sign language data",
          author = "Carl Börstell",
-         organization = "Stockholm University",
+         organization = "University of Bergen",
          address = "Stockholm",
-         note = "R package version 2.1.0",
-         year = "2021",
+         note = "R package version 2.2.0",
+         year = "2022",
          url = "https://github.com/borstell/signglossR",
-         textVersion = paste("Börstell, Carl. 2021.",
+         textVersion = paste("Börstell, Carl. 2022.",
                               "signglossR: Facilitating visual representation of sign language data.",
-                              "version 2.1.0. Stockholm University.",
+                              "version 2.2.0. University of Bergen.",
                               "https://github.com/borstell/signglossR")
 )

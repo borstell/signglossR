@@ -13,7 +13,7 @@ id2gloss_sts <- function(id) {
   }
   id <- stringr::str_pad(id, 5, pad = "0")
   sts_corpus_gloss_url <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/ord/", id)) %>%
-    rvest::html_nodes("[class='underline']") %>%
+    rvest::html_elements("[class='underline']") %>%
     rvest::html_attr("href")
   sts_corpus_gloss_url <- urltools::url_decode(sts_corpus_gloss_url)[1]
   gloss <- gsub(".*=", "", sts_corpus_gloss_url)

@@ -16,7 +16,7 @@
 #' @return A video file based on ELAN annotations
 #' @export
 make_elan_video <- function(path, destination="./", segmentation_tier="", gloss_tier1="", gloss_tier2="", gloss_gravity="northwest", video="", segment=TRUE, gloss_size=1, subtitle_size=1, padding=0) {
-  d <- signglossR::read_elan(path, segmentation_tier, gloss_tier=paste(gloss_tier1, gloss_tier2, sep=","), video)
+  d <- signglossR::segment_elan(path, segmentation_tier, gloss_tier=paste(gloss_tier1, gloss_tier2, sep=","), video)
   segs <- dplyr::filter(d, d$tier_cat == "segmentation")
   segs[order(segs$start_time),]
 

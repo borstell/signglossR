@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
-**v2.1.0**
+**v2.2.0**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -14,7 +14,7 @@ devtools::install_github("borstell/signglossR")
 # Introduction
 The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)). The intention of this package is to collect many different existing resources and adapt them to sign language researchers. The hard work in actual coding has been done by others -- `signglossR` relies heavily on other R packages such as [`magick`](https://ropensci.org/tutorials/magick_tutorial/), [`opencv`](https://docs.ropensci.org/opencv), and [`av`](https://docs.ropensci.org/av/), and also makes use of background command line prompts through R, especially [`ImageMagick`](https://imagemagick.org) and [`ffmpeg`](https://ffmpeg.org).
 
-The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing.
+The section [Images](#images) describes tools for accessing and modifying **image** files, such as downloading still images of signs from online sign language dictionaries, but also modifying such images by cropping or creating overlays, or adding annotated text or automatic or manual censoring/blurring. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing and also simply read annotations from `.eaf` files directly into R.
 
 The section [Videos](#videos) describes tools for accessing and modifying **video** files, such as downloading videos of signs from online sign language dictionaries. In versions >=1.1.0, this also includes tools for modifying videos, such as repeating, slowing down, and converting to `.gif`. From version 2.0, it is also possible to work directly with [ELAN](https://archive.mpi.nl/tla/elan) for automated visual glossing. From v2.1.0 it is also possible to download GIFs for STS directly with `get_gif()`.
 
@@ -32,7 +32,7 @@ Glossing has been a standard way of representing sign language data in linguisti
 
 This is problematic since [sign languages](#languages) are visual languages, and any written representation of the signs comes with an incredible loss of information: *Which signs are used if there are variants for the same concept?*, *How are signs moving in space?*, *What non-manual signals are present alongside the manual signs?*, etc.
 
-Many deaf and hearing researchers are in favor of the concept of [\#GlossGesang](https://twitter.com/hashtag/GlossGesang), named after Julie Hochgesang (a proponent of visual glossing and opponent of the [Tyranny of glossing](https://twitter.com/search?q=tyrannyofglossing)). \#GlossGesang has been tentatively defined as:
+Many sign language researchers are in favor of the concept of [\#GlossGesang](https://twitter.com/hashtag/GlossGesang), named after Julie Hochgesang (a proponent of visual glossing and opponent of the [Tyranny of glossing](https://twitter.com/search?q=tyrannyofglossing)). \#GlossGesang has been tentatively defined as:
 
 * *"Always present sign language data in a visual format (videos/images) without relying solely on glossing."* [(Börstell 2019)](https://twitter.com/c_borstell/status/1177498599992610823)
 
@@ -162,7 +162,6 @@ combine_images(sequence, destfile = "./helloworld.jpg", stack=TRUE)
 ```
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/helloworld_stacked.jpg)
 
-### ~~`elan2image()`~~
 
 
 ## Videos
@@ -218,7 +217,7 @@ The `get_video()` function passes its arguments onto subfunctions for individual
 
 ## ELAN functionality
 ### `read_elan()`
-This function reads ELAN annotation file (.eaf) in a directory and outputs a data frame.
+This function reads ELAN annotation files (.eaf) from a directory and outputs a data frame (can be a little slow in case of many files, but the files read should be printed to the console).
 
 ### `make_elan_image()`
 This function creates image files (with or without text) from an ELAN annotation file.
@@ -250,7 +249,7 @@ Example:
 
 To cite ASL Signbank in publications, please use:
 
-  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2020. ASL Signbank.
+  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2022. ASL Signbank.
   New Haven, CT: Haskins Lab, Yale University.
   https://aslsignbank.haskins.yale.edu/
 
@@ -263,7 +262,7 @@ A BibTeX entry for LaTeX users is
     author = {Julie A. Hochgesang and Onno Crasborn and Diane Lillo-Martin},
     organization = {Haskins Lab, Yale University},
     address = {New Haven, CT},
-    year = {2020},
+    year = {2022},
     url = {https://aslsignbank.haskins.yale.edu/}
   }
    
@@ -293,7 +292,7 @@ Example:
 ```
 Integer or string is irrelevant:
 ```
-> gloss2id("1")
+> gloss2id("103", acronym="asl")
 [1] "DEAFix"
 ```
 
@@ -321,14 +320,8 @@ get_image(1, acronym="sts", overlay=TRUE) %>%
   censor_image(region = "100x120+270+60")
 ```
 
-#### `isNumeric()`
-For checking inputs.
-
 #### `isNotNumeric()`
 For checking inputs.
-
-#### ~~`sts_padding()`~~
-~~Adds leading zeros to sign ID inputs for STS.~~ (Removed in version 1.1.0)
 
 
 ## Logo
@@ -348,8 +341,8 @@ citation("signglossR")
 
 To cite reports in publications, please use:
 
-  Börstell, Carl. 2021. signglossR: Facilitating visual representation of sign
-  language data. R package version 2.1.0. Stockholm University.
+  Börstell, Carl. 2022. signglossR: Facilitating visual representation of sign
+  language data. R package version 2.2.0. Stockholm University.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -357,10 +350,10 @@ A BibTeX entry for LaTeX users is
 @Manual{signglossR,
     title = {{signglossR}: Facilitating visual representation of sign language data},
     author = {Carl Börstell},
-    organization = {Stockholm University},
+    organization = {University of Bergen},
     address = {Stockholm},
-    note = {R package version 2.1.0},
-    year = {2021},
+    note = {R package version 2.2.0},
+    year = {2022},
     url = {https://github.com/borstell/signglossR},
   }
 ```

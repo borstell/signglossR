@@ -12,8 +12,8 @@ gloss2id_sts <- function(gloss) {
   }
   else {
     id <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/sok?q=", gloss)) %>%
-      rvest::html_node("[class='id nomobile']") %>% 
-      rvest::html_node("span") %>% 
+      rvest::html_element("[class='id nomobile']") %>%
+      rvest::html_element("span") %>%
       rvest::html_text()
     return(id)
   }

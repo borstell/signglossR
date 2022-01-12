@@ -19,12 +19,6 @@ read_elan <- function(path){
   for (f in filenames){
     message(paste0("Reading file: ",f))
     eaf <- xml2::read_xml(paste0(path, f))
-    vids <- xml2::xml_attr(xml2::xml_find_all(eaf, ".//MEDIA_DESCRIPTOR"), "RELATIVE_MEDIA_URL")
-    vid <- vids[1]
-    fps <- 25
-    if (file.exists(vid)) {
-      fps <- av::av_video_info(vid)$video$framerate
-    }
     ts <- xml2::xml_find_all(eaf, ".//TIME_SLOT")
     times <- dplyr::tibble(t=xml2::xml_attr(ts, "TIME_SLOT_ID"),
                            time=xml2::xml_attr(ts, "TIME_VALUE"))
@@ -79,19 +73,17 @@ read_elan <- function(path){
       dplyr::filter(!is.na(ref)) %>%
       dplyr::select(-t1,-t2) %>%
       dplyr::left_join(dplyr::select(parent_annotations,a,tier), by=c("ref"="a")) %>%
-      dplyr::rename(tier = "tier.x") %>%
-      dplyr::rename(parent_tier = "tier.y")
+      dplyr::rename(tier = tier.x) %>%
+      dplyr::rename(parent_tier = tier.y)
 
     file_annotations <- dplyr::bind_rows(parent_annotations,child_annotations) %>%
       dplyr::left_join(times, by=c("t1"="t")) %>%
-      dplyr::rename(start = "time") %>%
+      dplyr::rename(start = time) %>%
       dplyr::left_join(times, by=c("t2"="t")) %>%
-      dplyr::rename(end = "time") %>%
-      dplyr::mutate(end = as.numeric("end")) %>%
-      dplyr::mutate(start = as.numeric("start")) %>%
-      dplyr::mutate(duration = "end"-"start") %>%
-      dplyr::mutate(start_frame = floor("start"/"fps")) %>%
-      dplyr::mutate(end_frame = ceiling("end"/"fps"))
+      dplyr::rename(end = time) %>%
+      dplyr::mutate(end = as.numeric(end)) %>%
+      dplyr::mutate(start = as.numeric(start)) %>%
+      dplyr::mutate(duration = end-start)
 
     all_annotations <- dplyr::bind_rows(all_annotations, file_annotations)
   }

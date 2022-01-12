@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
-**v2.2.0**
+**v2.2.1**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -342,7 +342,7 @@ citation("signglossR")
 To cite reports in publications, please use:
 
   Börstell, Carl. 2022. signglossR: Facilitating visual representation of sign
-  language data. R package version 2.2.0. Stockholm University.
+  language data. R package version 2.2.1. Stockholm University.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -352,7 +352,7 @@ A BibTeX entry for LaTeX users is
     author = {Carl Börstell},
     organization = {University of Bergen},
     address = {Stockholm},
-    note = {R package version 2.2.0},
+    note = {R package version 2.2.1},
     year = {2022},
     url = {https://github.com/borstell/signglossR},
   }

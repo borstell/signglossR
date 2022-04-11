@@ -342,7 +342,7 @@ citation("signglossR")
 To cite reports in publications, please use:
 
   Börstell, Carl. 2022. signglossR: Facilitating visual representation of sign
-  language data. R package version 2.2.2. Stockholm University.
+  language data. R package version 2.2.2. University of Bergen.
   https://github.com/borstell/signglossR
 
 A BibTeX entry for LaTeX users is
@@ -351,7 +351,7 @@ A BibTeX entry for LaTeX users is
     title = {{signglossR}: Facilitating visual representation of sign language data},
     author = {Carl Börstell},
     organization = {University of Bergen},
-    address = {Stockholm},
+    address = {Bergen},
     note = {R package version 2.2.2},
     year = {2022},
     url = {https://github.com/borstell/signglossR},

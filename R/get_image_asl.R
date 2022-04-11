@@ -30,7 +30,7 @@ get_image_asl <- function(id, destination="./", glosstext=FALSE, gravity="north"
     if (tolower(gravity) %in% c("north", "south")) {
       location == "+0+20"
     }
-    text_image <- magick::image_annotate(magick::image_read(img_name), as.character(signglossR::id2gloss_asl(id)), size = fontsize, font = "Helvetica", color = "white", weight = 700, gravity = gravity, location = location)
+    text_image <- magick::image_annotate(magick::image_read(img_name), as.character(signglossR::id2gloss_asl(id)), size = fontsize, font = "Helvetica", color = "white", weight = fontsize*10, gravity = gravity, location = location)
     magick::image_write(text_image, path = img_name)
   }
   return(img_name)

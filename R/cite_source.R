@@ -72,7 +72,7 @@ A BibTeX entry for LaTeX users is
     author = {Carl B\u00f6rstell},
     organization = {Stockholm University},
     address = {Stockholm},
-    note = {R package version 2.2.0},
+    note = {R package version 2.2.2},
     year = {2022},
     url = {https://github.com/borstell/signglossR},
   }

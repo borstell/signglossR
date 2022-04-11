@@ -10,11 +10,13 @@
 #' @export
 get_video <- function(id, destination="./", acronym="sts") {
   acronym <- tolower(acronym)
-  if (acronym == "asl") {
-    vid_name <- signglossR::get_video_asl(id, destination)
-  }
-  if (acronym %in% c("sts", "ssl")) {
-    vid_name <- signglossR::get_video_sts(id, destination)
+  if (acronym %in% c("asl", "ssl", "sts")){
+    if (acronym == "asl") {
+      vid_name <- signglossR::get_video_asl(id, destination)
+    }
+    if (acronym %in% c("sts", "ssl")) {
+      vid_name <- signglossR::get_video_sts(id, destination)
+    }
   }
   else {
     message(paste0("Language <", acronym, "> not available."))

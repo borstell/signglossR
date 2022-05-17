@@ -12,9 +12,10 @@ gloss2id_sts <- function(gloss) {
   }
   else {
     id <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/sok?q=", gloss)) %>%
-      rvest::html_element("[class='id nomobile']") %>%
-      rvest::html_element("span") %>%
-      rvest::html_text()
+      rvest::html_nodes(xpath=".//div[contains(@class, 'flex-shrink-0 w-24')]//following-sibling::a") %>%
+      rvest::html_attr("href") %>%
+      unique() %>%
+      gsub("/ord/","",.)
     return(id)
   }
 }

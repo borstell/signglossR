@@ -9,8 +9,7 @@
 #' @return The name of the output video file
 #' @export
 make_video_ex <- function(video, destination="./", speed=.5, rep=FALSE) {
-  tmp_dir <- gsub("//", "/", tempdir())
-  new_vid <- paste0(tmp_dir,"/", gsub(".*/","",video))
+  new_vid <- paste0(tempdir(),"/", basename(video))
   system(paste0("cp ", video, " ", new_vid))
   video <- new_vid
   speedlabel <- speed*100
@@ -27,7 +26,7 @@ make_video_ex <- function(video, destination="./", speed=.5, rep=FALSE) {
   }
   system(paste0('ffmpeg -i ', video, ' -filter:v "setpts=', speed, '*PTS" ', outfile))
   if (rep == TRUE) {
-    txt_list <- paste0(tmp_dir,"/signglossr_concat_list.txt")
+    txt_list <- paste0(tempdir(),"/signglossr_concat_list.txt")
     newfile <- paste0(paste0(gsub(extension, "", outfile)), "_", "REP", extension)
     if (file.exists(newfile)) {
       system(paste0("rm ", newfile))
@@ -42,8 +41,8 @@ make_video_ex <- function(video, destination="./", speed=.5, rep=FALSE) {
   }
   system(paste0("mv ",outfile, " ", destination))
   for (f in c(new_vid, gsub("_REP", "", outfile))) {
-    print(f)
     system(paste0("rm ", f))
   }
   return(destination)
 }
+

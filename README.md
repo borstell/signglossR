@@ -11,6 +11,9 @@ Download using:
 devtools::install_github("borstell/signglossR")
 ```
 
+# Paper
+The `signglossR` package is described in the LREC workshop proceedings paper found here: [https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.html](https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.html).
+
 # Introduction
 The R package `signglossR` includes various R functions (created, adapted, and imported) that may help sign language researchers work with a visual representation of sign language data (i.e. videos and images). Hopefully, overcoming some of the technical obstacles will encourage more researchers to adopt **\#GlossGesang** and avoid \#TyrannyOfGlossing (see [Glossing](#glossing)). The intention of this package is to collect many different existing resources and adapt them to sign language researchers. The hard work in actual coding has been done by others -- `signglossR` relies heavily on other R packages such as [`magick`](https://ropensci.org/tutorials/magick_tutorial/), [`opencv`](https://docs.ropensci.org/opencv), and [`av`](https://docs.ropensci.org/av/), and also makes use of background command line prompts through R, especially [`ImageMagick`](https://imagemagick.org) and [`ffmpeg`](https://ffmpeg.org).
 
@@ -332,7 +335,7 @@ The logo was created by me using a combination of own code for reading images an
 ## License
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 
 
-* Please acknowledge any use of the `signglossR` package. The preferred citation is given by the ```citation("signglossR")``` function:
+* Please acknowledge any use of the `signglossR` package. The preferred citation is given by the ```citation("signglossR")``` function given below, alongside the accompanying [paper](https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.html) also listed in BibTeX further below. 
 
 * Do cite the original sources when using any material downloaded by `signglossR`. The preferred citations for these can be found using the `signglossR` function `cite_source()` which takes the sign language acronym of the language resource in question as its only argument (e.g. `cite_source("asl")`).
 
@@ -357,5 +360,25 @@ A BibTeX entry for LaTeX users is
     url = {https://github.com/borstell/signglossR},
   }
 ```
+
+```
+@inproceedings{borstell:22006:sign-lang:lrec,
+  author    = {B{\"o}rstell, Carl},
+  title     = {Introducing the {signglossR} Package},
+  pages     = {16--23},
+  editor    = {Efthimiou, Eleni and Fotinea, Stavroula-Evita and Hanke, Thomas and Hochgesang, Julie A. and Kristoffersen, Jette and Mesch, Johanna and Schulder, Marc},
+  booktitle = {Proceedings of the {LREC2022} 10th Workshop on the Representation and Processing of Sign Languages: Multilingual Sign Language Resources},
+  maintitle = {13th International Conference on Language Resources and Evaluation ({LREC} 2022)},
+  publisher = {{European Language Resources Association (ELRA)}},
+  address   = {Marseille, France},
+  day       = {25},
+  month     = jun,
+  year      = {2022},
+  isbn      = {979-10-95546-86-3},
+  language  = {english},
+  url       = {https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf}
+}
+```
+
 
 ![[License: CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png)

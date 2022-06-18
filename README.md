@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
 
 # signglossR
-**v2.2.2**
+**v2.2.3**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -344,24 +344,10 @@ citation("signglossR")
 
 To cite reports in publications, please use:
 
-  Börstell, Carl. 2022. signglossR: Facilitating visual representation of sign
-  language data. R package version 2.2.2. University of Bergen.
-  https://github.com/borstell/signglossR
+  Börstell, Carl. 2022. Introducing the signglossR Package. In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie    A. Hochgesang, Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.), Proceedings of the LREC2022 10th Workshop on the    Representation and Processing of Sign Languages: Multilingual Sign Language Resources, 16–23. Marseille: European Language    Resources Association (ELRA). https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.
 
 A BibTeX entry for LaTeX users is
 
-@Manual{signglossR,
-    title = {{signglossR}: Facilitating visual representation of sign language data},
-    author = {Carl Börstell},
-    organization = {University of Bergen},
-    address = {Bergen},
-    note = {R package version 2.2.2},
-    year = {2022},
-    url = {https://github.com/borstell/signglossR},
-  }
-```
-
-```
 @inproceedings{borstell:22006:sign-lang:lrec,
   author    = {B{\"o}rstell, Carl},
   title     = {Introducing the {signglossR} Package},

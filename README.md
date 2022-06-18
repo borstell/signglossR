@@ -344,7 +344,10 @@ citation("signglossR")
 
 To cite reports in publications, please use:
 
-  Börstell, Carl. 2022. Introducing the signglossR Package. In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie    A. Hochgesang, Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.), Proceedings of the LREC2022 10th Workshop on the    Representation and Processing of Sign Languages: Multilingual Sign Language Resources, 16–23. Marseille: European Language    Resources Association (ELRA). https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.
+  Börstell, Carl. 2022. Introducing the signglossR Package. In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie
+  A. Hochgesang, Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.), Proceedings of the LREC2022 10th Workshop on the
+  Representation and Processing of Sign Languages: Multilingual Sign Language Resources, 16–23. Marseille: European Language
+  Resources Association (ELRA). https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.
 
 A BibTeX entry for LaTeX users is
 

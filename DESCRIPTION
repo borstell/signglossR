@@ -1,6 +1,6 @@
 Package: signglossR
 Title: Facilitates Visual Representation of Sign Language Data
-Version: 2.2.2
+Version: 2.2.3
 Authors@R: person(given = "Carl",
            family = "Börstell",
            role = c("aut", "cre"),

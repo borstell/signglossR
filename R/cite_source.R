@@ -61,21 +61,31 @@ A BibTeX entry for LaTeX users is
       "
 To cite signglossR in publications, please use:
 
-  B\u00f6rstell, Carl. 2022. signglossR: Facilitating visual representation of sign
-  language data. R package version 2.2.0. University of Bergen.
-  https://github.com/borstell/signglossR
+  B\u00f6rstell, Carl. 2022. Introducing the signglossR Package.
+  In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie A. Hochgesang,
+  Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.), Proceedings of the
+  LREC2022 10th Workshop on the Representation and Processing of Sign Languages:
+  Multilingual Sign Language Resources, 16–23. Marseille: European Language Resources
+  Association (ELRA). https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.
 
 A BibTeX entry for LaTeX users is
 
-@Manual{signglossR,
-    title = {{signglossR}: Facilitating visual representation of sign language data},
-    author = {Carl B\u00f6rstell},
-    organization = {University of Bergen},
-    address = {Bergen},
-    note = {R package version 2.2.2},
-    year = {2022},
-    url = {https://github.com/borstell/signglossR},
-  }
+@inproceedings{borstell:22006:sign-lang:lrec,
+  author    = {B{\"o}rstell, Carl},
+  title     = {Introducing the {signglossR} Package},
+  pages     = {16--23},
+  editor    = {Efthimiou, Eleni and Fotinea, Stavroula-Evita and Hanke, Thomas and Hochgesang, Julie A. and Kristoffersen, Jette and Mesch, Johanna and Schulder, Marc},
+  booktitle = {Proceedings of the {LREC2022} 10th Workshop on the Representation and Processing of Sign Languages: Multilingual Sign Language Resources},
+  maintitle = {13th International Conference on Language Resources and Evaluation ({LREC} 2022)},
+  publisher = {{European Language Resources Association (ELRA)}},
+  address   = {Marseille, France},
+  day       = {25},
+  month     = jun,
+  year      = {2022},
+  isbn      = {979-10-95546-86-3},
+  language  = {english},
+  url       = {https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf}
+}
       "
     )
   }

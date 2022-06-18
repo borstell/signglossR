@@ -1,6 +1,6 @@
 citHeader("To cite signglossR in publications, please use:")
 
-citEntry(entry="inproceedings",
+citEntry(entry={inproceedings},
   title     = {Introducing the {signglossR} Package},
   author    = {B{\"o}rstell, Carl},
   pages     = {16--23},
@@ -14,7 +14,15 @@ citEntry(entry="inproceedings",
   year      = {2022},
   isbn      = {979-10-95546-86-3},
   language  = {english},
-  url       = {https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf}
+  url       = {https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf},
+  textVersion = paste("Börstell, Carl. 2022.",
+                      "Introducing the signglossR Package.",
+                      "In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie
+                      A. Hochgesang, Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.)",
+                      "Proceedings of the LREC2022 10th Workshop on the Representation and Processing
+                      of Sign Languages:  Multilingual Sign Language Resources, 16–23.",
+                      "Marseille: European Language Resources Association (ELRA).",
+                      "https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.")
 }
 
 )

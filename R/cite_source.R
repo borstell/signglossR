@@ -65,7 +65,7 @@ To cite signglossR in publications, please use:
   In Eleni Efthimiou, Stavroula-Evita Fotinea, Thomas Hanke, Julie A. Hochgesang,
   Jette Kristoffersen, Johanna Mesch & Marc Schulder (eds.), Proceedings of the
   LREC2022 10th Workshop on the Representation and Processing of Sign Languages:
-  Multilingual Sign Language Resources, 16–23. Marseille: European Language Resources
+  Multilingual Sign Language Resources, 16-23. Marseille: European Language Resources
   Association (ELRA). https://www.sign-lang.uni-hamburg.de/lrec/pub/22006.pdf.
 
 A BibTeX entry for LaTeX users is

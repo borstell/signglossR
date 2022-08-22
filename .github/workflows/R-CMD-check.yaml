@@ -31,15 +31,15 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Install linux opencv
-        if: runner.os == 'Linux'
-        run: |
-          sudo add-apt-repository ppa:cran/opencv
-          sudo add-apt-repository -y ppa:cran/ffmpeg-3
-          sudo apt-get update
-          sudo apt-get dist-upgrade
-          sudo apt install libopencv-dev
-          sudo apt install libavfilter-dev
+      #- name: Install linux opencv
+      #  if: runner.os == 'Linux'
+      #  run: |
+      #    sudo add-apt-repository ppa:cran/opencv
+      #    sudo add-apt-repository -y ppa:cran/ffmpeg-3
+      #    sudo apt-get update
+      #    sudo apt-get dist-upgrade
+      #    sudo apt install libopencv-dev
+      #    sudo apt install libavfilter-dev
       - name: Install macos opencv
         if: runner.os == 'macOS'
         run: |

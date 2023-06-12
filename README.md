@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="600">
+<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/sticker_signglossR.png" width="600">
 
 # signglossR
 **v2.2.3**
@@ -54,19 +54,19 @@ Example:
 ```
 get_image(id=10, acronym="sts")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/bjorn-00010.jpg)
 
 In this image, the image of BJÖRN ('bear') from STS becomes very wide as there are several frames to represent the sign. We could try to use the `overlay` argument to create an overlay image instead:
 ```
 get_image(id=10, acronym="sts", overlay=TRUE)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_overlay.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/bjorn-00010_overlay.jpg)
 
 This did not turn out very nice, since the movement segments get lost in the overlay. We could go back and try to use the `trim` argument, which trims each frame to a factor (0 to 1) of its original width:
 ```
 get_image(id=10, acronym="sts", overlay=FALSE, trim=.8)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn-00010_trimmed.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/bjorn-00010_trimmed.jpg)
 
 (NB: `overlay` and `trim` are currently only available for STS. Below are other options available for ASL.)
 
@@ -93,7 +93,7 @@ Example:
 ```
 get_gif(10)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/bjorn.gif)
 
 
 #### Subfunctions
@@ -105,7 +105,7 @@ Maybe you need to censor part of your image for some reason. Perhaps to hide the
 ```
 censor_image(file="STS_taxi-00001.jpg", automatic=TRUE, style="blur")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_taxi-00001_overlay_blurred.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_taxi-00001_overlay_blurred.jpg)
 
 Through the [`pipe`](#pipe) function, we can download and process videos in a single run. This is actually how the censored example below was generated:
 
@@ -113,7 +113,7 @@ Through the [`pipe`](#pipe) function, we can download and process videos in a si
 get_image(1) %>% 
   censor_image(style="black")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_taxi-00001_overlay_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_taxi-00001_overlay_censored.jpg)
 
 The automatic function is particularly useful when there are multiple regions to be censored, as multiple regions can be identified and masked at once. However, the method may fail if the face is covered:
 
@@ -121,19 +121,19 @@ The automatic function is particularly useful when there are multiple regions to
 get_image(10, acronym="sts", overlay=FALSE) %>% 
   censor_image(style="black")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_bjorn-00010_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_bjorn-00010_censored.jpg)
 
 Below are some examples of manually defined regions to censor.
 
 ```
 censor_image(file=path, automatic=FALSE, region = "100x120+270+60", style="blur")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_blurred.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/taxi-00001_blurred.jpg)
 
 ```
 censor_image(file=path, region = "100x120+270+60", method="black")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/taxi-00001_censored.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00001)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/taxi-00001_censored.jpg)
 
 The `region` argument defines *where* the censored rectangle should be, but also of what *size* it should be. The region to be modified defaults to '100x150+100+100', which is defined in [ImageMagick `geometry` syntax](https://www.imagemagick.org/script/command-line-options.php?#geometry) (width x height +upper_x +upper_y).
 
@@ -144,7 +144,7 @@ This function is useful for preparing images of signs for e.g. teaching or prese
 get_image(id, acronym="sts", overlay=TRUE) %>% 
   make_image_ex(text=id2gloss(id), fontsize=45, gravity="northwest", border=TRUE)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_varld-01210_EXAMPLE.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_varld-01210_EXAMPLE.jpg)
 
 ### `combine_images()`
 With this function, you can combine several images into one single output image. You can choose between either an `overlay` output image, or one with distinct frames either horizontally aligned (`stack=FALSE`) or stacked vertically (`stack=TRUE`).
@@ -159,11 +159,11 @@ for (n in signs) {
 
 combine_images(sequence, destfile = "./helloworld.jpg", stack=FALSE)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/helloworld.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/helloworld.jpg)
 ```
 combine_images(sequence, destfile = "./helloworld.jpg", stack=TRUE)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/helloworld_stacked.jpg)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/sok?q=12747%2C1210)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/helloworld_stacked.jpg)
 
 
 
@@ -176,7 +176,7 @@ Example:
 ```
 get_video(id=10, acronym="sts")
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/bjorn.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00010)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/bjorn.gif)
 
 NB: This example is shown as a `.gif` even though the actual download will use the video format of the original source (mostly `.mp4`). GIF conversion functionality is available from version 1.1.0 with the function `make_gif()` (see below).
 
@@ -186,7 +186,7 @@ We all love GIFs (hard /g/)! With this function, which uses command line prompts
 ```
 make_gif(file="STS_dov-00042-tecken.mp4", scale=.5, fps=12.5)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_dov-00042-tecken.gif)
 
 If you pipe a video download from `get_video()` to `make_gif()`, both video file and gif file will be saved, for example:
 
@@ -204,7 +204,7 @@ Often when you want to show an example during a presentation etc., you may want 
 ```
 make_video_ex(file="STS_dov-00042-tecken.mp4", speed=.7)
 ```
-![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_70.gif)
+![](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_dov-00042-tecken_70.gif)
 
 We could also set the `rep` argument to `TRUE` (or `T` for short), which means that the video example rendered will first play once in normal speed, then repeated once with slower speed, here set to 30% (`speed = .3`):
 
@@ -212,7 +212,7 @@ We could also set the `rep` argument to `TRUE` (or `T` for short), which means t
 get_video(42) %>% 
   make_video_example(rep=T, speed=.3)
 ```
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/STS_dov-00042-tecken_30_REP.gif)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/00042)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/STS_dov-00042-tecken_30_REP.gif)
 
 #### Subfunctions
 The `get_video()` function passes its arguments onto subfunctions for individual language resources, i.e. `get_video_asl()` and `get_video_sts()`.
@@ -225,7 +225,7 @@ This function reads ELAN annotation files (.eaf) from a directory and outputs a 
 ### `make_elan_image()`
 This function creates image files (with or without text) from an ELAN annotation file.
 
-![[Svensk teckenspråkskorpus (2020)](https://teckensprakskorpus.su.se/#/)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/elan_image.jpeg)
+![[Svensk teckenspråkskorpus (2020)](https://teckensprakskorpus.su.se/#/)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/elan_image.jpeg)
 
 ### `make_elan_video()`
 This function creates video file clips (with or without text) from an ELAN annotation file.
@@ -330,7 +330,7 @@ For checking inputs.
 ## Logo
 The logo was created by me using a combination of own code for reading images and plotting them in [`ggplot2`](https://ggplot2.tidyverse.org). The hex sticker is a nod to the [`tidyverse`](https://www.tidyverse.org) logos and was rendered using the [`hexSticker`](https://github.com/GuangchuangYu/hexSticker) package. The color is turquoise which is a color that I like and also relates to the deaf world. The motif is chosen because it is an **iconic** image of hands, and also because the two hands almost form G handshapes (in many one-handed manual alphabets). And the `gg` structure reminds me of both R packages in `tidyverse`, but also the concept of \#GlossGesang!
 
-<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/images/sticker_signglossR.png" width="200">
+<img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/sticker_signglossR.png" width="200">
 
 ## License
 * This R package can be used, modified, and shared freely under the [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/). 

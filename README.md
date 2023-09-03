@@ -231,6 +231,22 @@ This function creates image files (with or without text) from an ELAN annotation
 ### `make_elan_video()`
 This function creates video file clips (with or without text) from an ELAN annotation file.
 
+### `split_elan_video()`
+A simpler function for simply splitting a video based on ELAN annotation files, e.g.:
+
+```
+split_elan_video(elan_path = "/path/to/eaf/file(s)",
+                  segmentation_tier = "name_of_segmentation_tier",
+                  video_path = "/path/to/video/file(s)",
+                  annotation_tag = T, # will add contents of ELAN cells in output filenames
+                  padding = 0, # adds (or subtracts if negative) frames (in milliseconds) before+after segment duration
+                  video_input_format = ".mov", # specify input video format in directory (default is .mp4)
+                  video_output_format = ".mp4") # specify output video format (default is .mp4)
+```
+
+### `segment_elan()`
+This function creates a data frame for the segmentation of videos from ELAN annotation files.
+
 
 ## Openpose functionality
 ### `read_openpose()`

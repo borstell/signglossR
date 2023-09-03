@@ -29,6 +29,7 @@ Glossing has been a standard way of representing sign language data in linguisti
 
 ![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](https://raw.githubusercontent.com/borstell/borstell.github.io/master/videos/meat.gif)
 
+    _____headshake
     IX EAT MEAT IX
     'They don't eat meat'
     (Svenskt teckenspråkslexikon 2020, example 01913-2)

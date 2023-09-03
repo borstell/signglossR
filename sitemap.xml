@@ -85,9 +85,6 @@
     <loc>/reference/isNotNumeric.html</loc>
   </url>
   <url>
-    <loc>/reference/isNumeric.html</loc>
-  </url>
-  <url>
     <loc>/reference/make_avatar.html</loc>
   </url>
   <url>
@@ -106,6 +103,9 @@
     <loc>/reference/make_video_ex.html</loc>
   </url>
   <url>
+    <loc>/reference/make_video_ex2.html</loc>
+  </url>
+  <url>
     <loc>/reference/pipe.html</loc>
   </url>
   <url>
@@ -119,5 +119,11 @@
   </url>
   <url>
     <loc>/reference/search_corpus.html</loc>
+  </url>
+  <url>
+    <loc>/reference/segment_elan.html</loc>
+  </url>
+  <url>
+    <loc>/reference/split_elan_video.html</loc>
   </url>
 </urlset>

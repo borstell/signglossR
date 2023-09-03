@@ -36,11 +36,14 @@ segment_elan <- function(path, segmentation_tier="", gloss_tier="", video="") {
   else {
     filenames = list.files(path = path, pattern="*.eaf$")
   }
-  datalist = list()
-  n <- 1
+  all_annotations <- dplyr::tibble()
   for (f in filenames){
-    f_index <- 1
+    message(paste0("Reading file: ", f))
     eaf <- xml2::read_xml(paste0(path, f))
+    ts <- xml2::xml_find_all(eaf, ".//TIME_SLOT")
+    times <- dplyr::tibble(t=xml2::xml_attr(ts, "TIME_SLOT_ID"),
+                           time=xml2::xml_attr(ts, "TIME_VALUE"))
+    all_tiers <- xml2::xml_find_all(eaf, ".//TIER")
     vids <- xml2::xml_attr(xml2::xml_find_all(eaf, ".//MEDIA_DESCRIPTOR"), "RELATIVE_MEDIA_URL")
     vid <- vids[1]
     fps <- 25
@@ -50,61 +53,76 @@ segment_elan <- function(path, segmentation_tier="", gloss_tier="", video="") {
     if (file.exists(vid)) {
       fps <- av::av_video_info(vid)$video$framerate
     }
-    ts <- xml2::xml_find_all(eaf, ".//TIME_SLOT")
-    times <- hash::hash()
-    times[xml2::xml_attr(ts, "TIME_SLOT_ID")] <- xml2::xml_attr(ts, "TIME_VALUE")
-    all_tiers <- xml2::xml_find_all(eaf, ".//TIER")
-    all_tiers <- all_tiers[xml2::xml_attr(all_tiers, "TIER_ID") %in% tiers]
-    start <- hash::hash()
-    end <- hash::hash()
-    start[xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "ANNOTATION_ID")] <- hash::values(times[xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "TIME_SLOT_REF1")])
-    end[xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "ANNOTATION_ID")] <- hash::values(times[xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "TIME_SLOT_REF2")])
-    annotation_tiers <- xml2::xml_attr(all_tiers, "TIER_ID")
-    annotation_tier_types <- xml2::xml_attr(all_tiers, "LINGUISTIC_TYPE_REF")
-    annotation_participant <- xml2::xml_attr(all_tiers, "PARTICIPANT")
-    t_num <- 1
-    tier_data <- list()
-    for (t in all_tiers) {
-      tier_id <- xml2::xml_attr(t, "TIER_ID")
-      tier_cat <- ""
-      if (tier_id %in% segmentation_tiers) {
-        tier_cat <- "segmentation"
-      }
-      if (tier_id %in% gloss_tiers) {
-        tier_cat <- "gloss"
-      }
-      tier_type <- xml2::xml_attr(t, "LINGUISTIC_TYPE_REF")
-      tier_participant <- xml2::xml_attr(t, "PARTICIPANT")
-      for (annotation in xml2::xml_children(xml2::xml_children(t))) {
-        annotation_label <- xml2::xml_attr(annotation, "ANNOTATION_ID")
-        annotation_start <- xml2::xml_attr(annotation, "TIME_SLOT_REF1")
-        annotation_end <- xml2::xml_attr(annotation, "TIME_SLOT_REF2")
-        annotation_text <- xml2::xml_text(xml2::xml_child(annotation))
-        annotation_data <- data.frame(f_index)
-        annotation_data <- data.frame(annotation_data,
-                                      filename=f,
-                                      videopath=vid,
-                                      tier_type,
-                                      tier_cat,
-                                      tier_id,
-                                      tier_participant,
-                                      annotation_label,
-                                      annotation_text,
-                                      start_time=as.numeric(as.character(hash::values(times[annotation_start]))),
-                                      end_time=as.numeric(as.character(hash::values(times[annotation_end]))),
-                                      duration=as.numeric(as.character(hash::values(times[annotation_end])))-as.numeric(as.character(hash::values(times[annotation_start]))),
-                                      start_frame=round(fps*(as.numeric(as.character(hash::values(times[annotation_start])))/1000)),
-                                      end_frame=round(fps*(as.numeric(as.character(hash::values(times[annotation_end])))/1000)))
-        rownames(annotation_data) <- NULL
-        tier_data[[t_num]] <- annotation_data
-        t_num <- t_num + 1
-        f_index <- f_index + 1
-      }
+    annotations <- dplyr::tibble(file=f,
+                                 a=xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "ANNOTATION_ID"),
+                                 t1=xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "TIME_SLOT_REF1"),
+                                 t2=xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "TIME_SLOT_REF2"),
+                                 annotation=xml2::xml_text(xml2::xml_children(xml2::xml_children(all_tiers))),
+                                 ref=xml2::xml_attr(xml2::xml_children(xml2::xml_children(all_tiers)), "ANNOTATION_REF"))
+
+    a <- c()
+    t1 <- c()
+    t2 <- c()
+    ref <- c()
+    annotation <- c()
+    tier <- c()
+    lingtype <- c()
+    participant <- c()
+    annotator <- c()
+    for (n in xml2::xml_children(xml2::xml_children(all_tiers))){
+      a <- c(a, xml2::xml_attr(n, "ANNOTATION_ID"))
+      t1 <- c(t1, xml2::xml_attr(n, "TIME_SLOT_REF1"))
+      t2 <- c(t2, xml2::xml_attr(n, "TIME_SLOT_REF2"))
+      ref <- c(ref, xml2::xml_attr(n, "ANNOTATION_REF"))
+      annotation <- c(annotation, xml2::xml_text(n))
+      tier <- c(tier, xml2::xml_attr(xml2::xml_parent(xml2::xml_parent(n)),"TIER_ID"))
+      lingtype <- c(lingtype, xml2::xml_attr(xml2::xml_parent(xml2::xml_parent(n)),"LINGUISTIC_TYPE_REF"))
+      participant <- c(participant, xml2::xml_attr(xml2::xml_parent(xml2::xml_parent(n)),"PARTICIPANT"))
+      annotator <- c(annotator, xml2::xml_attr(xml2::xml_parent(xml2::xml_parent(n)),"ANNOTATOR"))
     }
-    file_data <- data.table::rbindlist(tier_data)
-    datalist[[n]] <- file_data
-    n <- n+1
+
+    annotations <- dplyr::tibble(
+      file=f,
+      a,
+      t1,
+      t2,
+      ref,
+      annotation,
+      tier,
+      tier_type=lingtype,
+      participant,
+      annotator
+    )
+
+    parent_annotations <- dplyr::select(dplyr::filter(annotations, is.na(ref)),-ref)
+
+    child_annotations <- dplyr::select(dplyr::filter(annotations,!is.na(ref)),-c(t1,t2))
+    child_annotations <- dplyr::left_join(child_annotations, dplyr::select(parent_annotations,a,tier), by=c("ref"="a"))
+    child_annotations <- dplyr::rename(child_annotations,
+                                       tier = tier.x,
+                                       parent_tier = tier.y)
+
+    file_annotations <- dplyr::bind_rows(parent_annotations,child_annotations)
+    file_annotations <- dplyr::left_join(file_annotations, times, by=c("t1"="t"))
+    file_annotations <- dplyr::rename(file_annotations, start = time)
+    file_annotations <- dplyr::left_join(file_annotations, times, by=c("t2"="t"))
+    file_annotations <- dplyr::rename(file_annotations, end = time)
+    file_annotations <- dplyr::mutate(file_annotations,
+                                      end_time = as.numeric(end),
+                                      start_time = as.numeric(start),
+                                      duration = end_time-start_time)
+    file_annotations <- dplyr::rename(file_annotations, annotation_text = annotation)
+    file_annotations <- dplyr::mutate(file_annotations, tier_cat = dplyr::case_when(tier %in% segmentation_tiers ~ "segmentation",
+                                                                                    tier %in% gloss_tiers ~ "gloss",
+                                                                                    .default = ""))
+    file_annotations <- dplyr::mutate(file_annotations,
+                                      start_frame = round(start_time/1000*fps),
+                                      end_frame = round(end_time/1000*fps),
+                                      videopath = vid,
+                                      f_index = dplyr::row_number())
+
+    all_annotations <- dplyr::bind_rows(all_annotations, file_annotations)
   }
-  elan_data <- data.table::rbindlist(datalist)
-  return(elan_data)
+
+  return(all_annotations)
 }

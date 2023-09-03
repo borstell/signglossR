@@ -53,31 +53,31 @@ make_elan_video <- function(path, destination="./", segmentation_tier="", gloss_
   all_framelist[[1]] <- data.frame(frame=1:length(v))
   framelist <- list()
   for (n in 1:nrow(segs)){
-    r <- data.frame(segment=n, file=segs[n,]$file, video=segs[n,]$video, subtitle=segs[n,]$annotation_text, frame=segs[n,]$start_frame:segs[n,]$end_frame)
+    r <- data.frame(segment=n, file=segs[n,]$file, video=segs[n,]$videopath, subtitle=segs[n,]$annotation_text, frame=segs[n,]$start_frame:segs[n,]$end_frame)
     framelist[[n]] <- r
   }
-  frame_data <- data.table::rbindlist(framelist)
+  frame_data <- dplyr::bind_rows(framelist)
   frame_data <- dplyr::left_join(all_framelist[[1]], frame_data)
 
   if (gloss_tier1 != "") {
     framelist_g1 <- list()
-    g1 <- glosses[glosses$tier_id==gloss_tier1,]
+    g1 <- glosses[glosses$tier==gloss_tier1,]
     for (n in 1:nrow(g1)){
       r <- data.frame(file=g1[n,]$file, right_gloss=g1[n,]$annotation_text, frame=g1[n,]$start_frame:g1[n,]$end_frame)
       framelist_g1[[n]] <- r
     }
-    frame_data_g1 <- data.table::rbindlist(framelist_g1)
+    frame_data_g1 <- dplyr::bind_rows(framelist_g1)
 
     frame_data <- dplyr::left_join(frame_data, frame_data_g1, by=c("frame", "file"))
   }
   if (gloss_tier2 != "") {
     framelist_g2 <- list()
-    g2 <- glosses[glosses$tier_id==gloss_tier2,]
+    g2 <- glosses[glosses$tier==gloss_tier2,]
     for (n in 1:nrow(g2)){
       r <- data.frame(file=g2[n,]$file, left_gloss=g2[n,]$annotation_text, frame=g2[n,]$start_frame:g2[n,]$end_frame)
       framelist_g2[[n]] <- r
     }
-    frame_data_g2 <- data.table::rbindlist(framelist_g2)
+    frame_data_g2 <- dplyr::bind_rows(framelist_g2)
 
     frame_data <- dplyr::left_join(frame_data, frame_data_g2, by=c("frame", "file"))
   }

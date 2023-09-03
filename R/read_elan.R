@@ -65,25 +65,23 @@ read_elan <- function(path){
       annotator
     )
 
-    parent_annotations <- annotations %>%
-      dplyr::filter(is.na(ref)) %>%
-      dplyr::select(-ref)
+    parent_annotations <- dplyr::select(dplyr::filter(annotations, is.na(ref)),-ref)
 
-    child_annotations <- annotations %>%
-      dplyr::filter(!is.na(ref)) %>%
-      dplyr::select(-t1,-t2) %>%
-      dplyr::left_join(dplyr::select(parent_annotations,a,tier), by=c("ref"="a")) %>%
-      dplyr::rename(tier = tier.x) %>%
-      dplyr::rename(parent_tier = tier.y)
+    child_annotations <- dplyr::select(dplyr::filter(annotations,!is.na(ref)),-c(t1,t2))
+    child_annotations <- dplyr::left_join(child_annotations, dplyr::select(parent_annotations,a,tier), by=c("ref"="a"))
+    child_annotations <- dplyr::rename(child_annotations,
+                                       tier = tier.x,
+                                       parent_tier = tier.y)
 
-    file_annotations <- dplyr::bind_rows(parent_annotations,child_annotations) %>%
-      dplyr::left_join(times, by=c("t1"="t")) %>%
-      dplyr::rename(start = time) %>%
-      dplyr::left_join(times, by=c("t2"="t")) %>%
-      dplyr::rename(end = time) %>%
-      dplyr::mutate(end = as.numeric(end)) %>%
-      dplyr::mutate(start = as.numeric(start)) %>%
-      dplyr::mutate(duration = end-start)
+    file_annotations <- dplyr::bind_rows(parent_annotations,child_annotations)
+    file_annotations <- dplyr::left_join(file_annotations, times, by=c("t1"="t"))
+    file_annotations <- dplyr::rename(file_annotations, start = time)
+    file_annotations <- dplyr::left_join(file_annotations, times, by=c("t2"="t"))
+    file_annotations <- dplyr::rename(file_annotations, end = time)
+    file_annotations <- dplyr::mutate(file_annotations,
+                                      end = as.numeric(end),
+                                      start = as.numeric(start),
+                                      duration = end-start)
 
     all_annotations <- dplyr::bind_rows(all_annotations, file_annotations)
   }

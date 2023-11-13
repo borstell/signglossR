@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/borstell/borstell.github.io/master/media/signglossR/sticker_signglossR.png" width="600">
 
 # signglossR
-**v2.2.4**
+**v2.2.5**
 [![R build status](https://github.com/borstell/signglossR/workflows/R-CMD-check/badge.svg)](https://github.com/borstell/signglossR/actions)
 
 An R package that facilitates *visual* representation of sign language data
@@ -269,7 +269,7 @@ Example:
 
 To cite ASL Signbank in publications, please use:
 
-  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2022. ASL Signbank.
+  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2023. ASL Signbank.
   New Haven, CT: Haskins Lab, Yale University.
   https://aslsignbank.haskins.yale.edu/
 
@@ -282,7 +282,7 @@ A BibTeX entry for LaTeX users is
     author = {Julie A. Hochgesang and Onno Crasborn and Diane Lillo-Martin},
     organization = {Haskins Lab, Yale University},
     address = {New Haven, CT},
-    year = {2022},
+    year = {2023},
     url = {https://aslsignbank.haskins.yale.edu/}
   }
    

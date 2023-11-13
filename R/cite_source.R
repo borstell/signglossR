@@ -13,7 +13,7 @@ cite_source <- function(acronym="signglossR") {
       "
 To cite ASL Signbank in publications, please use:
 
-  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2022. ASL Signbank.
+  Julie A. Hochgesang, Onno Crasborn & Diane Lillo-Martin. 2023. ASL Signbank.
   New Haven, CT: Haskins Lab, Yale University.
   https://aslsignbank.haskins.yale.edu/
 
@@ -26,7 +26,7 @@ A BibTeX entry for LaTeX users is
     author = {Julie A. Hochgesang and Onno Crasborn and Diane Lillo-Martin},
     organization = {Haskins Lab, Yale University},
     address = {New Haven, CT},
-    year = {2022},
+    year = {2023},
     url = {https://aslsignbank.haskins.yale.edu/}
   }
       "
@@ -37,7 +37,7 @@ A BibTeX entry for LaTeX users is
       "
 To cite the STS dictionary in publications, please use:
 
-  Svenskt teckenspr\u00e5kslexikon. 2022. Svenskt teckenspr\u00e5kslexikon. Stockholm:
+  Svenskt teckenspr\u00e5kslexikon. 2023. Svenskt teckenspr\u00e5kslexikon. Stockholm:
   Sign Language Section, Department of Linguistics, Stockholm University.
   https://teckensprakslexikon.ling.su.se/
 
@@ -50,7 +50,7 @@ A BibTeX entry for LaTeX users is
     author = {Svenskt teckenspr\u00e5kslexikon},
     organization = {Sign Language Section, Department of Linguistics, Stockholm University},
     address = {Stockholm},
-    year = {2022},
+    year = {2023},
     url = {https://teckensprakslexikon.ling.su.se/}
   }
       "

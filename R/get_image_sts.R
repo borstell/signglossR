@@ -19,8 +19,10 @@ get_image_sts <- function(id, destination="./", overlay=FALSE, trim=1) {
   }
   id <- stringr::str_pad(id, 5, pad = "0")
   sts_imgs <- xml2::read_html(paste0("https://teckensprakslexikon.su.se/ord/", id)) %>%
-    rvest::html_elements("[class='w-64 mr-2 mb-2']") %>%
-    rvest::html_attr("src")
+    rvest::html_elements("[class='w-full']") %>%
+    rvest::html_attr("src") %>%
+    na.omit() %>%
+    as.vector()
   urls <- c()
   tmp_dir <- tempdir()
   img_names <- c()

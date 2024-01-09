@@ -72,7 +72,7 @@ make_elan_image <- function(path, destination="./", segmentation_tier="", gloss_
       }
     }
     if (destination == "./" | max(unique(glosses$seg))>1) {
-      outfile <- paste0(gsub(".eaf", "", gsub(".*/", "", dplyr::filter(glosses, glosses$seg==n)[1,]$file)), "_", n, ".png")
+      outfile <- paste0(gsub("\\.eaf$", "", gsub(".*/", "", dplyr::filter(glosses, glosses$seg==n)[1,]$file)), "_", n, ".png")
       outfile <- paste0(getwd(), "/", outfile)
     }
     else {

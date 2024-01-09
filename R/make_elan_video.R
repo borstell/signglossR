@@ -120,7 +120,7 @@ make_elan_video <- function(path, destination="./", segmentation_tier="", gloss_
       clip_frames <- magick::image_annotate(clip_frames, text = frame_data[start:end,]$sub, size = subtitle_size, color = "white", boxcolor = "black", gravity = "south")
     }
     if (destination == "./" | length(clips)>1) {
-      outfile <- paste0(destination, gsub(".eaf", "", gsub(".*/", "", path)), "_", n, ".mp4")
+      outfile <- paste0(destination, gsub("\\.eaf$", "", gsub(".*/", "", path)), "_", n, ".mp4")
     }
     else {
       outfile <- destination

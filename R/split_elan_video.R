@@ -33,7 +33,7 @@ split_elan_video <- function(elan_path="", segmentation_tier="", video_path="", 
         bare_video_path <- stringr::str_sub(original_video_path, 1, -5)
         video_input_format <- paste0(".", tools::file_ext(original_video_path))
       } else {
-        bare_video_path <- paste0(original_video_path, gsub(".eaf", "", current_filename))
+        bare_video_path <- paste0(original_video_path, gsub("\\.eaf$", "", current_filename))
         video_path <- paste0(bare_video_path, video_input_format)
       }
 

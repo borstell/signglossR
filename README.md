@@ -54,7 +54,7 @@ Glossing has been a standard way of representing sign language data in linguisti
 In practice, this has meant using written word labels in place of signs, such as in this example 
 from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
 
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](https://teckensprakslexikon.su.se/movies/01/kott-01913-fras-2.mp4){width="50%"}
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](https://teckensprakslexikon.su.se/movies/01/kott-01913-fras-2.mp4)
 
     _____headshake
     IX EAT MEAT IX

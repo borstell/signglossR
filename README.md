@@ -54,7 +54,7 @@ Glossing has been a standard way of representing sign language data in linguisti
 In practice, this has meant using written word labels in place of signs, such as in this example 
 from the [STS Dictionary](https://teckensprakslexikon.su.se/ord/01913#exempel2):
 
-![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](https://teckensprakslexikon.su.se/movies/01/kott-01913-fras-2.mp4)
+![[Svenskt teckenspråkslexikon (2020)](https://teckensprakslexikon.su.se/ord/01913#exempel2)](./man/figures/kott.gif)
 
     _____headshake
     IX EAT MEAT IX
@@ -164,7 +164,6 @@ This function inputs an  ID number and downloads the image of the corresponding
 sign entry in the selected language:
 ```
 get_image(id = 10, lang = "sts")
-
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010.jpg)
 
@@ -174,7 +173,6 @@ argument to create an overlay image instead:
 
 ```
 get_image(id = 10, lang = "sts", overlay = TRUE)
-
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-overlay.jpg)
 
@@ -185,7 +183,6 @@ Another approach is to use the `trim` argument, which trims each frame to
 a factor (0 to 1) of its original width:
 ```
 get_image(10, overlay = FALSE, trim = .8)
-
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-trimmed.jpg)
 
@@ -195,7 +192,6 @@ get_image(10, overlay = FALSE, trim = .8)
 You can also input multiple IDs to download all at once:
 ```
 get_image(c(1, 2, 4, 7))
-
 ```
 
 ### Videos
@@ -207,14 +203,12 @@ This function inputs an  ID number and downloads the video of the corresponding
 sign entry in the selected language.
 ```
 get_video(1)
-
 ```
-![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00001)](./man/figures/taxi-00001-tecken.mp4){width="50%"}
+![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00001)](./man/figures/taxi-00001-tecken.gif)
 
 You can also input multiple IDs to download all at once:
 ```
 get_video(c(1, 2, 4, 7))
-
 ```
 
 ### GIFs
@@ -226,7 +220,6 @@ This function inputs an  ID number and downloads the GIF of the corresponding
 sign entry.
 ```
 get_gif(123)
-
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00123)](./man/figures/00123-animation.gif)
 
@@ -247,7 +240,6 @@ mask for blurring/censoring.
 
 ```
 censor_image(file = "bjorn-00010.jpg", path = "/path/to/output/", filename = "bjorn-00010-censored.jpg")
-
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-censored.jpg)
 
@@ -255,8 +247,7 @@ Through piping, we could also download and process images in a single run.
 
 ```
 get_image(1) |> 
-  censor_image(path = "/path/to/output/", filename = "bjorn-00010-censored.jpg")
-  
+  censor_image(path = "/path/to/output/", filename = "bjorn-00010-censored.jpg") 
 ```
 
 The automatic function is particularly useful when there are multiple faces to 
@@ -273,8 +264,7 @@ get_image(1, trim = .7, overlay = T) |>
     path = "/path/to/file/", 
     filename = "taxi-00001-censored-manually.jpg", 
     automatic = FALSE, 
-    width = 130, height = 90, x = 120, y = 10)
-    
+    width = 130, height = 90, x = 120, y = 10)  
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00001)](./man/figures/taxi-00001-censored-manually.jpg)
 
@@ -284,9 +274,8 @@ New in v3.0.0 is that you can also censor videos automatically, just like images
 censor_video(
   video = "taxi-00001-tecken.mp4", 
   filename = "taxi-00001-tecken-censored.mp4")
-
 ```
-![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00001)](./man/figures/taxi-00001-tecken-censored.mp4){width="50%"}
+![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00001)](./man/figures/taxi-00001-tecken-censored.gif)
 
 Note that video censoring can be automatic, but the face masking is a rectangle.
 
@@ -297,7 +286,6 @@ combine them horizontally, stack them vertically (if `stack = TRUE`) or create
 a blended composite of them.
 ```
 composite_image(c(img1, img2), filename = "composite-image.jpg")
-
 ```
 
 This function is used internally by `get_sign()` for STS signs images that are
@@ -322,7 +310,6 @@ get_image(10, trim = .7, overlay = T) |>
     location = "+0-5", 
     fontsize = 40, 
     font = "PT Sans")
-    
 ```
 ![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-glossed.jpg)
 
@@ -342,9 +329,8 @@ get_video(10) |>
                 text = "BJÖRN ('bear')", 
                 fontsize = 40, 
                 font = "PT Sans")
-    
 ```
-![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-glossed.mp4){width="50%"}
+![[Svenskt teckenspråkslexikon (2025)](https://teckensprakslexikon.su.se/ord/00010)](./man/figures/bjorn-00010-glossed.gif)
 
 Note that modifying and annotating videos requires reading all frames to memory 
 and then performing annotations by frame, so it can take some time and is 
@@ -385,7 +371,6 @@ segment_elan_image(eaf = "sslc01_041.eaf",
                    gloss_text = T, 
                    fontsize = 26, 
                    gravity = "northeast")
-                   
 ```
 ![[Svenskt teckenspråkskorpus (2025)](https://teckensprakskorpus.su.se/video/sslc01_041.eaf?t=36960)](./man/figures/sslc01_041_00036960.jpg)
 
@@ -416,7 +401,6 @@ segment_elan_video(eaf = "sslc01_041.eaf",
                    path = "/path/to/output/videos/", 
                    padding = 1000,
                    method = "ffmpeg")
-
 ```
 
 
@@ -468,7 +452,6 @@ A BibTeX entry for LaTeX users is
   }
 
 [...]
-
 ```
 
 

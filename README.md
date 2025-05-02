@@ -31,7 +31,7 @@ The `signglossR` package is described in the
 LREC sign language workshop proceedings paper 
 found here: <https://aclanthology.org/2022.signlang-1.3/>.
 
-See also [Licence](#license) for suggested citation.
+See also [License](#license) for suggested citation.
 
 
 # Introduction
@@ -486,7 +486,13 @@ The preferred citations for these can be found using the `signglossR` function
 - The `{signglossR}` package relies heavily on the packages 
 [`{magick}`](https://docs.ropensci.org/magick) and [`{av}`](https://docs.ropensci.org/av).
 I recommend using these packages for further functionality and customizability.
-Please cite these packages too, if using `signglossR` image/video functions!
+Consider citing these packages too, if using `signglossR` image/video functions!
+
+- The `{signglossR}` may contain bugs and errors, and as software that reads 
+from and writes to disk, functions may overwrite existing files, so be advised. 
+`{signglossR}` is provided "as is", without warranty of any kind. The 
+authors/creators shall not be liable for any damages or claims resulting from 
+the use of `{signglossR}`.
 
 ```
 citation("signglossR")

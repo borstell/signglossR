@@ -18,7 +18,7 @@ to achieve the following goals:
 
 - **Minimize** the number of individual functions to avoid clutter
 - **Reduce** the number of dependencies (now cut in half)
-- **Vectorize** code to allow for multiple inputs across functions
+- **Pseudo-vectorize** code to allow for multiple inputs across functions
 - **Avoid** external command calls and focus on R-internal functions/packages
 - **Focus** package to image/video functionality (thus removing Openpose functions)
 
